@@ -1,14 +1,13 @@
-import { makeStyles } from '@mui/styles';
+//import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles((theme) => {
+//const useStyles = makeStyles((theme) => {
+const classes = {
   root: {
-    // some css that access to theme
   }
-});
+}
 
 export default function Component() {
-  const classes = useStyles();
   return (
-    <div />
+    <div sx={classes.root}>This is next </div>
   )
 }
