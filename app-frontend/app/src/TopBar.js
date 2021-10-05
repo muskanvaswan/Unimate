@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
-    paddingTop: Platform.OS === 'ios'? 40: 90,
+    paddingTop: 40,
     height: 80
   },
   right: {
