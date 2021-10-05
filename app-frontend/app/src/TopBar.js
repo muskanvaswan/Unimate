@@ -5,7 +5,9 @@ import { StyleSheet, View, Image } from 'react-native';
 import { Avatar } from 'react-native-paper';
 
 const Profile = () => (
-  <Image style={styles.profile} resizeMode="contain" source={require('../assets/muskan.jpeg')} />
+  <View style={styles.profile}>
+    <Image style={{height: 24, width: '100%'}} resizeMode="cover" source={require('../assets/muskan.jpeg')} />
+  </View>
 );
 
 const MyComponent = () => (
@@ -37,6 +39,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     width: 24,
     height: 24,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    overflow: 'hidden'
   }
 });
