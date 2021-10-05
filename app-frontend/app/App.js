@@ -12,6 +12,9 @@ const theme = {
     primary: 'rgb(117, 181, 247)',
     accent: 'rgb(163, 222, 169)',
     background: '#1b1b1b',
+    success: '#4DE75C',
+    waiting: '#E7A94D',
+    danger: '#E7694D'
   },
 };
 
