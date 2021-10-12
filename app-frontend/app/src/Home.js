@@ -4,6 +4,8 @@ import { StyleSheet, View, Image } from 'react-native';
 import { Text } from 'react-native-paper'
 import Topbar from './TopBar'
 import Colleges from './YourColleges'
+import Recommended from './Recommended'
+import Tracker from './Tracker'
 
 export default function App(props) {
   return (
@@ -11,9 +13,9 @@ export default function App(props) {
     <Topbar />
     <StatusBar style="auto" />
 
-    <View style={styles.tracker} />
+    <View style={styles.tracker}><Tracker /></View>
     <View style={styles.colleges}><Colleges /></View>
-    <View style={styles.colleges} />
+    <View style={styles.colleges}><Recommended /></View>
     <Image style={styles.gradient} source={require('../assets/gradient.png')} />
     </View>
   );

@@ -9,7 +9,7 @@ const theme = {
   dark: true,
   colors: {
     ...DarkTheme.colors,
-    primary: 'rgb(117, 181, 247)',
+    primary: '#4694DB',
     accent: 'rgb(163, 222, 169)',
     background: '#1b1b1b',
     success: '#4DE75C',
