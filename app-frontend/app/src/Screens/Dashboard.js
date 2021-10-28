@@ -2,21 +2,19 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Text } from 'react-native-paper'
-import Topbar from './TopBar'
-import Colleges from './YourColleges'
-import Recommended from './Recommended'
-import Tracker from './Tracker'
+import Colleges from '../YourColleges'
+import Recommended from '../Recommended'
+import Tracker from '../Tracker'
 
 export default function App(props) {
   return (
     <View style={styles.container}>
-    <Topbar />
-    <StatusBar style="auto" />
+      <StatusBar style="auto" />
 
-    <View style={styles.tracker}><Tracker /></View>
-    <View style={styles.colleges}><Colleges /></View>
-    <View style={styles.colleges}><Recommended /></View>
-    <Image style={styles.gradient} source={require('../assets/gradient.png')} />
+      <View style={styles.tracker}><Tracker /></View>
+      <View style={styles.colleges}><Colleges /></View>
+      <View style={styles.colleges}><Recommended /></View>
+      <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
     </View>
   );
 }

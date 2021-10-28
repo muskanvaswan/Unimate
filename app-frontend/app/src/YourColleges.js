@@ -35,6 +35,36 @@ const DATA = [
     description: 'Cambridge Boston',
     status: 'complete'
   },
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba23oi43',
+    title: 'Wisconssin Maddison',
+    description: 'Cambridge Boston',
+    status: 'remaining'
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f6323iy43',
+    title: 'Harvard University',
+    description: 'Cambridge Boston',
+    status: 'complete'
+  },
+  {
+    id: '58694a0f-3da1-471f32uy43',
+    title: 'Purdue University',
+    description: 'Cambridge Boston',
+    status: 'urgent'
+  },
+  {
+    id: '58694a0f-3da1i3yi4',
+    title: 'Third Item',
+    description: 'Cambridge Boston',
+    status: 'complete'
+  },
+  {
+    id: '58694a0f738',
+    title: 'Third Item',
+    description: 'Cambridge Boston',
+    status: 'complete'
+  },
 ];
 
 
@@ -58,7 +88,7 @@ const App = (props) => {
   );
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Your Colleges</Text>
+      {!props.withoutTitle && <Text style={styles.heading}>Your Colleges</Text>}
       <FlatList
         data={DATA}
         renderItem={renderItem}

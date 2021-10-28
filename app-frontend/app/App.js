@@ -4,8 +4,10 @@ import { DarkTheme, Provider as PaperProvider } from 'react-native-paper';
 import { name as appName } from './app.json';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-import Home from './src/Home';
+import Dashboard from './src/Screens/Dashboard';
+import Landing from './src/Screens/Landing';
 import Topbar from './src/TopBar';
+import YourColleges from './src/Screens/YourColleges';
 
 const theme = {
   ...DarkTheme,
@@ -17,14 +19,15 @@ const theme = {
     background: '#1b1b1b',
     success: '#4DE75C',
     waiting: '#E7A94D',
-    danger: '#E7694D'
+    danger: '#E7694D',
+    highlight: '#e2b1f8'
   },
 };
 
 function HomeScreen({ navigation }) {
   return (
     <PaperProvider theme={theme}>
-      <Home />
+      <Dashboard />
     </PaperProvider>
   );
 }
@@ -36,8 +39,7 @@ export default function App() {
     <PaperProvider theme={theme}>
     <NavigationContainer>
       <Drawer.Navigator
-        initialRouteName="Home"
-
+        initialRouteName="Dashboard"
         screenOptions={{
           drawerInactiveTintColor: '#fff',
           drawerStyle: {
@@ -52,11 +54,19 @@ export default function App() {
         }}>
         <Drawer.Screen
           name="Dashboard"
-          component={Home}
+          component={Dashboard}
         />
         <Drawer.Screen
           name="Profile"
           component={HomeScreen}
+        />
+        <Drawer.Screen
+          name="Your Colleges"
+          component={YourColleges}
+        />
+        <Drawer.Screen
+          name="Landing"
+          component={Landing}
         />
       </Drawer.Navigator>
     </NavigationContainer>
