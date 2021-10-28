@@ -67,6 +67,9 @@ export default function App() {
         <Drawer.Screen
           name="Landing"
           component={Landing}
+          options={{
+            headerShown: false
+          }}
         />
       </Drawer.Navigator>
     </NavigationContainer>

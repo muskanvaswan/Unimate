@@ -12,11 +12,11 @@ export default function App(props) {
       <Image style={styles.logo} source={require('../../assets/logo.png')} />
       <Text style={styles.title}>Welcome to Unimate</Text>
       <Button
-        mode="outlined"
+        mode="contained"
         color={colors.highlight}
         style={styles.button}
-        onPress={() => console.log('Pressed')}>
-        Press me
+        onPress={() => props.navigation.jumpTo('Dashboard')}>
+        Continue
       </Button>
       <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
     </View>
