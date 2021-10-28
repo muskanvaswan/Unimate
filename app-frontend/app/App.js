@@ -8,6 +8,7 @@ import Dashboard from './src/Screens/Dashboard';
 import Landing from './src/Screens/Landing';
 import Topbar from './src/TopBar';
 import YourColleges from './src/Screens/YourColleges';
+import Account from './src/Screens/Account';
 
 const theme = {
   ...DarkTheme,
@@ -61,12 +62,19 @@ export default function App() {
           component={HomeScreen}
         />
         <Drawer.Screen
-          name="Your Colleges"
+          name="YourColleges"
           component={YourColleges}
         />
         <Drawer.Screen
           name="Landing"
           component={Landing}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Drawer.Screen
+          name="Account"
+          component={Account}
           options={{
             headerShown: false
           }}

@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Text, Button, useTheme } from 'react-native-paper'
-import TypeWriter from 'react-native-typewriter'
 
 export default function App(props) {
   const { colors } = useTheme();
@@ -15,7 +14,7 @@ export default function App(props) {
         mode="contained"
         color={colors.highlight}
         style={styles.button}
-        onPress={() => props.navigation.jumpTo('Dashboard')}>
+        onPress={() => props.navigation.jumpTo('Account')}>
         Continue
       </Button>
       <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
