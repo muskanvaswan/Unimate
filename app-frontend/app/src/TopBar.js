@@ -10,9 +10,9 @@ const Profile = () => (
   </View>
 );
 
-const MyComponent = () => (
+const MyComponent = ({ navigation }) => (
  <Appbar style={styles.top}>
-    <Appbar.Action icon="menu" onPress={() => console.log('Pressed mail')} />
+    <Appbar.Action icon="menu" onPress={() => navigation.toggleDrawer()} />
     <View style={styles.right}>
       <Profile />
     </View>
