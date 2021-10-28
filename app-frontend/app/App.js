@@ -66,15 +66,15 @@ export default function App() {
           component={YourColleges}
         />
         <Drawer.Screen
-          name="Landing"
-          component={Landing}
+          name="Account"
+          component={Account}
           options={{
             headerShown: false
           }}
         />
         <Drawer.Screen
-          name="Account"
-          component={Account}
+          name="Landing"
+          component={Landing}
           options={{
             headerShown: false
           }}
