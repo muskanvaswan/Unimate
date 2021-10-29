@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Text, Button, TextInput, Divider, useTheme } from 'react-native-paper'
@@ -9,7 +8,6 @@ export default function App({ navigation }) {
   const [ password, setPassword ] = React.useState('');
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
       <Button
         color={colors.highlight}
         onPress={() => navigation.jumpTo('Dashboard')}
@@ -42,11 +40,10 @@ export default function App({ navigation }) {
         mode="contained"
         color={colors.highlight}
         style={styles.button}
-        onPress={() => props.navigation.jumpTo('Dashboard')}>
+        onPress={() => navigation.jumpTo('Dashboard')}>
         Log In
       </Button>
 
-      <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
     </View>
   );
 }

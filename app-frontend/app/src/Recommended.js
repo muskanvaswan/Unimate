@@ -1,6 +1,6 @@
 import React from 'react';
 import normalize from './responsiveFont'
-import { SafeAreaView, View, FlatList, StyleSheet, StatusBar } from 'react-native';
+import { View, FlatList, StyleSheet, StatusBar } from 'react-native';
 import { Text } from 'react-native-paper'
 import { useTheme } from 'react-native-paper';
 

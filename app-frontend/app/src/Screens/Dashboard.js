@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Text } from 'react-native-paper'
@@ -9,7 +8,6 @@ import Tracker from '../Tracker'
 export default function App(props) {
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
 
       <View style={styles.tracker}><Tracker /></View>
       <View style={styles.colleges}><Colleges /></View>

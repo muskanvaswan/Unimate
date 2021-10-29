@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Text } from 'react-native-paper'
@@ -7,7 +6,6 @@ import Colleges from '../YourColleges'
 export default function App(props) {
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
       <View style={styles.colleges}><Colleges withoutTitle={true}/></View>
       <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
     </View>

@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Text, Button, useTheme } from 'react-native-paper'
@@ -7,7 +6,6 @@ export default function App(props) {
   const { colors } = useTheme();
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
       <Image style={styles.logo} source={require('../../assets/logo.png')} />
       <Text style={styles.title}>Welcome to Unimate</Text>
       <Button
