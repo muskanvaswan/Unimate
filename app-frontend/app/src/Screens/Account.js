@@ -7,6 +7,8 @@ export default function App({ navigation }) {
   const { colors } = useTheme();
   const [ username, setUsername ] = React.useState('');
   const [ password, setPassword ] = React.useState('');
+  const [ error, setError ] = React.useState(false);
+  const [ visible, setVisible ] = React.useState(false);
 
   const login = () => {
     const payload = { username: username, password: password }
@@ -22,7 +24,7 @@ export default function App({ navigation }) {
         // Navigate to the home screen
         navigation.jumpTo('Dashboard')
       })
-      .catch(error => console.log(error));
+      .catch(error => setError(true));
   }
   return (
     <View style={styles.container}>
@@ -47,6 +49,7 @@ export default function App({ navigation }) {
         onChangeText={username => setUsername(username)}
         underlineColor={colors.highlight}
         autoCapitalize="none"
+        error={error}
       />
       <TextInput
         label="Password"
@@ -55,6 +58,9 @@ export default function App({ navigation }) {
         onChangeText={password => setPassword(password)}
         underlineColor={colors.highlight}
         autoCapitalize="none"
+        error={error}
+        secureTextEntry={!visible}
+        right={<TextInput.Icon onPress={() => setVisible(visible => !visible)} name={visible? "eye": "eye-off"} />}
       />
       <Button
         mode="contained"
