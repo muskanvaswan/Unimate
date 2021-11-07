@@ -5,14 +5,21 @@ import axios from 'axios';
 
 export default function App({ navigation }) {
   const { colors } = useTheme();
+  const [ firstName, setFirstName ] = React.useState('');
+  const [ lastName, setLastName ] = React.useState('');
   const [ username, setUsername ] = React.useState('');
   const [ password, setPassword ] = React.useState('');
 
-  const login = () => {
-    const payload = { username: username, password: password }
+  const register = () => {
+    const payload = {
+      username: username,
+      password: password,
+      first_name: firstName,
+      last_name: lastName
+     }
 
     axios
-      .post(`/auth/login/`, payload)
+      .post(`/auth/register/`, payload)
       .then(response => {
         const { token, user } = response.data;
 
@@ -26,20 +33,23 @@ export default function App({ navigation }) {
   }
   return (
     <View style={styles.container}>
-      <Button
-        color={colors.highlight}
-        onPress={() => navigation.jumpTo('SignUp')}
-        mode="outlined"
-        style={styles.button}
-      >
-        Sign Up
-      </Button>
-      <Text style={{width: '90%', color: 'rgb(145, 147, 148)', marginBottom: 20}}>Don't have an account? Create one here</Text>
-      <Divider style={{
-        width: '95%',
-        backgroundColor: 'rgba(255, 255, 255, 0.51)',
-        marginBottom: 20
-      }}/>
+
+      <TextInput
+        label="First Name"
+        value={firstName}
+        style={styles.input}
+        onChangeText={firstName => setFirstName(firstName)}
+        underlineColor={colors.highlight}
+        autoCapitalize="none"
+      />
+      <TextInput
+        label="Last Name"
+        value={lastName}
+        style={styles.input}
+        onChangeText={lastName => setLastName(lastName)}
+        underlineColor={colors.highlight}
+        autoCapitalize="none"
+      />
       <TextInput
         label="Username"
         value={username}
@@ -60,8 +70,8 @@ export default function App({ navigation }) {
         mode="contained"
         color={colors.highlight}
         style={styles.button}
-        onPress={login}>
-        Log In
+        onPress={register}>
+        Sign Up
       </Button>
 
     </View>

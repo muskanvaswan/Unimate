@@ -10,6 +10,7 @@ import Profile from './src/Screens/Profile';
 import Topbar from './src/TopBar';
 import YourColleges from './src/Screens/YourColleges';
 import Account from './src/Screens/Account';
+import SignUp from './src/Screens/SignUp';
 import axios from 'axios';
 
 const theme = {
@@ -75,6 +76,13 @@ export default function App() {
         <Drawer.Screen
           name="Account"
           component={Account}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Drawer.Screen
+          name="SignUp"
+          component={SignUp}
           options={{
             headerShown: false
           }}
