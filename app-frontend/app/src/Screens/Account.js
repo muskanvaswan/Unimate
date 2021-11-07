@@ -26,14 +26,14 @@ export default function App({ navigation }) {
         label="Username"
         value={username}
         style={styles.input}
-        onChangeText={username => setText(username)}
+        onChangeText={username => setUsername(username)}
         underlineColor={colors.highlight}
       />
       <TextInput
         label="Password"
         value={password}
         style={styles.input}
-        onChangeText={password => setPassword(Password)}
+        onChangeText={password => setPassword(password)}
         underlineColor={colors.highlight}
       />
       <Button
