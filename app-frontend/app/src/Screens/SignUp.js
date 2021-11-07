@@ -27,7 +27,7 @@ export default function App({ navigation }) {
         axios.defaults.headers.common.Authorization = `Token ${token}`;
 
         // Navigate to the home screen
-        navigation.jumpTo('Dashboard')
+        navigation.push('Dashboard')
       })
       .catch(error => console.log(error));
   }

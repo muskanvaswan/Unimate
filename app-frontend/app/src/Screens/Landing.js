@@ -12,7 +12,7 @@ export default function App(props) {
         mode="contained"
         color={colors.highlight}
         style={styles.button}
-        onPress={() => props.navigation.jumpTo('Account')}>
+        onPress={() => props.navigation.push('Account')}>
         Continue
       </Button>
       <Image style={styles.gradient} source={require('../../assets/gradient.png')} />

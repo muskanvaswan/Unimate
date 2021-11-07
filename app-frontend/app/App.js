@@ -38,17 +38,13 @@ function HomeScreen({ navigation }) {
 
 const Drawer = createDrawerNavigator();
 
-export default function App() {
+function App({ navigation }) {
 
-  React.useEffect(() => {
-    axios.defaults.baseURL = `http://127.0.0.1:8000/api`;
-    axios.defaults.timeout = 1500;
-  })
   return (
-    <PaperProvider theme={theme}>
-    <NavigationContainer>
+
+    <NavigationContainer independent={true}>
       <Drawer.Navigator
-        initialRouteName="Landing"
+        initialRouteName="Dashboard"
         screenOptions={{
           drawerInactiveTintColor: '#fff',
           drawerStyle: {
@@ -73,30 +69,58 @@ export default function App() {
           name="YourColleges"
           component={YourColleges}
         />
-        <Drawer.Screen
-          name="Account"
-          component={Account}
-          options={{
-            headerShown: false
-          }}
-        />
-        <Drawer.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{
-            headerShown: false
-          }}
-        />
-        <Drawer.Screen
-          name="Landing"
-          component={Landing}
-          options={{
-            headerShown: false
-          }}
-        />
+
       </Drawer.Navigator>
     </NavigationContainer>
+
+  );
+}
+
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+export default function MyStack() {
+  React.useEffect(() => {
+    axios.defaults.baseURL = `http://127.0.0.1:8000/api`;
+    axios.defaults.timeout = 1500;
+  })
+  return (
+    <PaperProvider theme={theme}>
+    <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Landing"
+        component={Landing}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Stack.Screen
+        name="Account"
+        component={Account}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Stack.Screen
+        name="Dashboard"
+        component={App}
+        options={{
+        headerShown: false
+        }}
+      />
+    </Stack.Navigator>
+    </NavigationContainer>
     </PaperProvider>
+
   );
 }
 

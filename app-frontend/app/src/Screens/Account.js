@@ -22,7 +22,7 @@ export default function App({ navigation }) {
         axios.defaults.headers.common.Authorization = `Token ${token}`;
 
         // Navigate to the home screen
-        navigation.jumpTo('Dashboard')
+        navigation.push('Dashboard')
       })
       .catch(error => setError(true));
   }
@@ -30,7 +30,7 @@ export default function App({ navigation }) {
     <View style={styles.container}>
       <Button
         color={colors.highlight}
-        onPress={() => navigation.jumpTo('SignUp')}
+        onPress={() => navigation.push('SignUp')}
         mode="outlined"
         style={styles.button}
       >
