@@ -6,6 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Dashboard from './src/Screens/Dashboard';
 import Landing from './src/Screens/Landing';
+import Profile from './src/Screens/Profile';
 import Topbar from './src/TopBar';
 import YourColleges from './src/Screens/YourColleges';
 import Account from './src/Screens/Account';
@@ -46,7 +47,7 @@ export default function App() {
     <PaperProvider theme={theme}>
     <NavigationContainer>
       <Drawer.Navigator
-        initialRouteName="Dashboard"
+        initialRouteName="Landing"
         screenOptions={{
           drawerInactiveTintColor: '#fff',
           drawerStyle: {
@@ -65,7 +66,7 @@ export default function App() {
         />
         <Drawer.Screen
           name="Profile"
-          component={HomeScreen}
+          component={Profile}
         />
         <Drawer.Screen
           name="YourColleges"
