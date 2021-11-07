@@ -9,6 +9,7 @@ import Landing from './src/Screens/Landing';
 import Topbar from './src/TopBar';
 import YourColleges from './src/Screens/YourColleges';
 import Account from './src/Screens/Account';
+import axios from 'axios';
 
 const theme = {
   ...DarkTheme,
@@ -36,6 +37,11 @@ function HomeScreen({ navigation }) {
 const Drawer = createDrawerNavigator();
 
 export default function App() {
+
+  React.useEffect(() => {
+    axios.defaults.baseURL = `http://127.0.0.1:8000/api`;
+    axios.defaults.timeout = 1500;
+  })
   return (
     <PaperProvider theme={theme}>
     <NavigationContainer>

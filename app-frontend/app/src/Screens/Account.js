@@ -1,11 +1,29 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Text, Button, TextInput, Divider, useTheme } from 'react-native-paper'
+import axios from 'axios';
 
 export default function App({ navigation }) {
   const { colors } = useTheme();
   const [ username, setUsername ] = React.useState('');
   const [ password, setPassword ] = React.useState('');
+
+  const login = () => {
+    const payload = { username: username, password: password }
+
+    axios
+      .post(`/auth/login/`, payload)
+      .then(response => {
+        const { token, user } = response.data;
+
+        // We set the returned token as the default authorization header
+        axios.defaults.headers.common.Authorization = `Token ${token}`;
+
+        // Navigate to the home screen
+        navigation.jumpTo('Dashboard')
+      })
+      .catch(error => console.log(error));
+  }
   return (
     <View style={styles.container}>
       <Button
@@ -28,6 +46,7 @@ export default function App({ navigation }) {
         style={styles.input}
         onChangeText={username => setUsername(username)}
         underlineColor={colors.highlight}
+        autoCapitalize="none"
       />
       <TextInput
         label="Password"
@@ -35,12 +54,13 @@ export default function App({ navigation }) {
         style={styles.input}
         onChangeText={password => setPassword(password)}
         underlineColor={colors.highlight}
+        autoCapitalize="none"
       />
       <Button
         mode="contained"
         color={colors.highlight}
         style={styles.button}
-        onPress={() => navigation.jumpTo('Dashboard')}>
+        onPress={login}>
         Log In
       </Button>
 
