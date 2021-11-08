@@ -1,8 +1,9 @@
 # backend/api/urls.py
 
 from django.conf.urls import url
+from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
-from .views import CreateUserAPIView, LogoutUserAPIView
+from .views import CreateUserAPIView, LogoutUserAPIView, CollegeList
 
 
 urlpatterns = [
@@ -14,5 +15,6 @@ urlpatterns = [
         name='auth_user_create'),
     url(r'^auth/logout/$',
         LogoutUserAPIView.as_view(),
-        name='auth_user_logout')
+        name='auth_user_logout'),
+    path('colleges/', CollegeList.as_view(), name="colleges")
 ]

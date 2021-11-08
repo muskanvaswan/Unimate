@@ -1,14 +1,15 @@
 # backend/api/views.py
 
 from django.contrib.auth import get_user_model
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListCreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework import status
 from rest_framework.views import APIView
-from users.serializers import CreateUserSerializer
-
+from users.serializers import CreateUserSerializer, CollegeSerializer
+from .models import College
+from rest_framework.permissions import AllowAny
 
 class CreateUserAPIView(CreateAPIView):
     serializer_class = CreateUserSerializer
@@ -36,3 +37,8 @@ class LogoutUserAPIView(APIView):
         # simply delete the token to force a login
         request.user.auth_token.delete()
         return Response(status=status.HTTP_200_OK)
+
+class CollegeList(ListCreateAPIView):
+    queryset = College.objects.all()
+    serializer_class = CollegeSerializer
+    permission_classes = [AllowAny]
