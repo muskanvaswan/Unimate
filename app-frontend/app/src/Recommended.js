@@ -1,8 +1,16 @@
 import React from 'react';
 import normalize from './responsiveFont'
 import { View, FlatList, StyleSheet, StatusBar } from 'react-native';
-import { Text } from 'react-native-paper'
+import { Text, ActivityIndicator, Colors } from 'react-native-paper'
 import { useTheme } from 'react-native-paper';
+import axios from 'axios';
+
+
+const Loading = () => (
+  <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+    <ActivityIndicator animating={true} color={Colors.purple800} size={70} />
+  </View>
+);
 
 const DATA = [
   {
@@ -59,22 +67,70 @@ const Item = ({ title, description, category, status, compatibility}) => (
 
 const App = (props) => {
   const { colors } = useTheme();
+  const [ loading, setLoading ] = React.useState(false);
+  const [ data, setData ] = React.useState([]);
+
+  categorize = (score) => {
+    if (9 < score && score < 10)
+      return "target"
+    else if (score < 9)
+      return "dream"
+    else if (score > 10)
+      return "safety"
+  }
+  elipsise = (name) => {
+    return (name.length > 20? name.slice(0, 17) + "..." : name)
+  }
+  calculateRec = (college) => {
+    let score = college.world_rank / 100 + 8.8
+    college['compatibility'] = String(Math.round(score * 1000) / 100) + '%'
+    college['category'] = categorize(score)
+    college['name'] = elipsise(college['name'])
+    college['id'] = college['id'].toString()
+    return college
+  }
+
+  getData = () => {
+    setLoading(true);
+    axios
+      .get(`/colleges/`)
+      .then(response => {
+        var colleges = response.data;
+
+        colleges = colleges.slice(0, 300)
+        console.log("now")
+        colleges.forEach(calculateRec);
+
+
+        setData(colleges)
+        setLoading(false)
+      })
+      .catch(error => console.log(error));
+  }
+
+  React.useEffect(() => {
+    getData();
+  }, [])
   const statusColors = {
     "dream": colors.success,
     "target": colors.primary,
     "safety": colors.danger
   }
   const renderItem = ({ item }) => (
-    <Item title={item.title} description={item.description} category={item.category} compatibility={item.compatibility} status={statusColors[item.category]}/>
+    <Item title={item.name} description={item.country} category={item.category} compatibility={item.compatibility} status={statusColors[item.category]}/>
   );
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Recommended</Text>
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+      {loading?
+        <Loading />
+        : <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
+      }
+
     </View>
   );
 }
