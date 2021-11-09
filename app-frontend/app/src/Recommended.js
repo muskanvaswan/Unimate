@@ -52,7 +52,7 @@ const DATA = [
 
 
 const Item = ({ title, description, category, status, compatibility, item, navigation}) => (
-  <TouchableHighlight onPress={() => navigation.jumpTo('College', { college: item })}>
+  <TouchableHighlight onPress={() => navigation.push('College', { college: item })}>
     <View style={styles.item}>
       <View>
         <Text style={styles.description}>{description}</Text>
@@ -87,7 +87,6 @@ const App = (props) => {
     let score = college.world_rank / 100 + 8.8
     college['compatibility'] = String(Math.round(score * 1000) / 100) + '%'
     college['category'] = categorize(score)
-    college['name'] = elipsise(college['name'])
     college['id'] = college['id'].toString()
     return college
   }
@@ -120,13 +119,13 @@ const App = (props) => {
   }
   const renderItem = ({ item }) => (
     <Item
-      title={item.name}
+      title={elipsise(item.name)}
       description={item.country}
       category={item.category}
       compatibility={item.compatibility}
       status={statusColors[item.category]}
       item={item}
-      navigation={props.navigation}
+      navigation={props.collegeNavigator}
     />
   );
   return (

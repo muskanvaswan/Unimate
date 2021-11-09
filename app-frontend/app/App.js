@@ -60,8 +60,9 @@ function App({ navigation }) {
         }}>
         <Drawer.Screen
           name="Dashboard"
-          component={Dashboard}
-        />
+        >
+        {() => <Dashboard stacker={navigation} />}
+        </Drawer.Screen>
         <Drawer.Screen
           name="Profile"
           component={Profile}
@@ -70,15 +71,7 @@ function App({ navigation }) {
           name="YourColleges"
           component={YourColleges}
         />
-        <Drawer.Screen
-          name="College"
-          component={College}
-          options={{
-              drawerLabel: () => null,
-              title: null,
-              drawerIcon: () => null
-          }}
-        />
+
 
       </Drawer.Navigator>
     </NavigationContainer>
@@ -125,6 +118,15 @@ export default function MyStack() {
         component={App}
         options={{
         headerShown: false
+        }}
+      />
+      <Stack.Screen
+        name="College"
+        component={College}
+        options={{
+          headerStyle: {
+            backgroundColor: theme.colors.background,
+          }
         }}
       />
     </Stack.Navigator>

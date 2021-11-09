@@ -23,7 +23,7 @@ export default function App(props) {
     <View style={styles.container}>
       <View style={styles.tracker}><Tracker /></View>
       <View style={styles.colleges}><Colleges /></View>
-      <View style={styles.colleges}><Recommended navigation={props.navigation}/></View>
+      <View style={styles.colleges}><Recommended navigation={props.navigation} collegeNavigator={props.stacker}/></View>
       <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
     </View>
   );
