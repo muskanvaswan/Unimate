@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class College(models.Model):
     world_rank = models.IntegerField()
@@ -12,3 +12,8 @@ class College(models.Model):
     income = models.DecimalField(max_digits=19, decimal_places=10)
     total_score = models.DecimalField(max_digits=19, decimal_places=10)
     num_students = models.IntegerField()
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    colleges = models.ManyToManyField(College,  related_name="colleges")
+    sat_score = models.IntegerField(null=True)
