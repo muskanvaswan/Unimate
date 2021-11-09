@@ -39,6 +39,6 @@ class LogoutUserAPIView(APIView):
         return Response(status=status.HTTP_200_OK)
 
 class CollegeList(ListCreateAPIView):
-    queryset = College.objects.all()
+    queryset = College.objects.all().order_by('?')
     serializer_class = CollegeSerializer
     permission_classes = [AllowAny]

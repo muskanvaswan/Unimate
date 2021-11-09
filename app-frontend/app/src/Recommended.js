@@ -71,7 +71,7 @@ const App = (props) => {
   const [ data, setData ] = React.useState([]);
 
   categorize = (score) => {
-    if (9 < score && score < 10)
+    if (9 <= score && score <= 10)
       return "target"
     else if (score < 9)
       return "dream"

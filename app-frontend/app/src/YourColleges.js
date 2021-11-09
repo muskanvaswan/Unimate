@@ -93,6 +93,7 @@ const App = (props) => {
         data={DATA}
         renderItem={renderItem}
         keyExtractor={item => item.id}
+        style={{flex: 1}}
       />
     </View>
   );
@@ -100,8 +101,8 @@ const App = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: normalize(10),
+    flexGrow: 1
   },
   heading: {
     fontSize: 30
