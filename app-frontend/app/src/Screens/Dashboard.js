@@ -12,7 +12,7 @@ export default function App(props) {
       .get(`/profile/`)
       .then(response => {
         const profile = response.data;
-        console.log(profile);
+        //console.log(profile);
       })
       .catch(error => console.log(error))
   }
