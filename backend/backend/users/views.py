@@ -52,3 +52,14 @@ class ProfileView(APIView):
         data = ProfileSerializer(request.user.profile)
         print(request.user)
         return Response(data.data)
+
+class AddCollegeView(APIView):
+
+    def get(self, request):
+        college_id = request.query_params.get('college')
+        college = College.objects.get(pk=college_id)
+        profile = request.user.profile
+        profile.colleges.add(college)
+        profile.save()
+
+        return Response(status=200)

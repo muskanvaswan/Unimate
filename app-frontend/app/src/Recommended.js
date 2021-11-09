@@ -1,6 +1,6 @@
 import React from 'react';
 import normalize from './responsiveFont'
-import { View, FlatList, StyleSheet, StatusBar } from 'react-native';
+import { View, FlatList, StyleSheet, StatusBar, TouchableHighlight } from 'react-native';
 import { Text, ActivityIndicator, Colors } from 'react-native-paper'
 import { useTheme } from 'react-native-paper';
 import axios from 'axios';
@@ -51,18 +51,20 @@ const DATA = [
 ];
 
 
-const Item = ({ title, description, category, status, compatibility}) => (
-  <View style={styles.item}>
-    <View>
-      <Text style={styles.description}>{description}</Text>
-      <Text style={styles.title}>{title}</Text>
+const Item = ({ title, description, category, status, compatibility, item, navigation}) => (
+  <TouchableHighlight onPress={() => navigation.jumpTo('College', { college: item })}>
+    <View style={styles.item}>
+      <View>
+        <Text style={styles.description}>{description}</Text>
+        <Text style={styles.title}>{title}</Text>
+      </View>
+      <Text style={[styles.category, {color: status}]}>{category}</Text>
+      <View style={styles.status}>
+        <Text style={[styles.category, {color: status}]}>{compatibility}</Text>
+        <Text style={styles.description}>Compatibility</Text>
+      </View>
     </View>
-    <Text style={[styles.category, {color: status}]}>{category}</Text>
-    <View style={styles.status}>
-      <Text style={[styles.category, {color: status}]}>{compatibility}</Text>
-      <Text style={styles.description}>Compatibility</Text>
-    </View>
-  </View>
+  </TouchableHighlight>
 );
 
 const App = (props) => {
@@ -117,7 +119,15 @@ const App = (props) => {
     "safety": colors.danger
   }
   const renderItem = ({ item }) => (
-    <Item title={item.name} description={item.country} category={item.category} compatibility={item.compatibility} status={statusColors[item.category]}/>
+    <Item
+      title={item.name}
+      description={item.country}
+      category={item.category}
+      compatibility={item.compatibility}
+      status={statusColors[item.category]}
+      item={item}
+      navigation={props.navigation}
+    />
   );
   return (
     <View style={styles.container}>

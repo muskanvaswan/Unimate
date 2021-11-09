@@ -9,6 +9,7 @@ import Landing from './src/Screens/Landing';
 import Profile from './src/Screens/Profile';
 import Topbar from './src/TopBar';
 import YourColleges from './src/Screens/YourColleges';
+import College from './src/Screens/College';
 import Account from './src/Screens/Account';
 import SignUp from './src/Screens/SignUp';
 import axios from 'axios';
@@ -68,6 +69,15 @@ function App({ navigation }) {
         <Drawer.Screen
           name="YourColleges"
           component={YourColleges}
+        />
+        <Drawer.Screen
+          name="College"
+          component={College}
+          options={{
+              drawerLabel: () => null,
+              title: null,
+              drawerIcon: () => null
+          }}
         />
 
       </Drawer.Navigator>
