@@ -4,11 +4,23 @@ import { Text } from 'react-native-paper'
 import Colleges from '../YourColleges'
 import Recommended from '../Recommended'
 import Tracker from '../Tracker'
-
+import axios from 'axios';
 export default function App(props) {
+
+  getData = () => {
+    axios
+      .get(`/profile/`)
+      .then(response => {
+        const profile = response.data;
+        console.log(profile);
+      })
+      .catch(error => console.log(error))
+  }
+
+  React.useEffect(getData, [])
+
   return (
     <View style={styles.container}>
-
       <View style={styles.tracker}><Tracker /></View>
       <View style={styles.colleges}><Colleges /></View>
       <View style={styles.colleges}><Recommended /></View>
