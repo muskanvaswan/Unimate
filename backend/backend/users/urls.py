@@ -3,7 +3,7 @@
 from django.conf.urls import url
 from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
-from .views import CreateUserAPIView, LogoutUserAPIView, CollegeList
+from .views import CreateUserAPIView, LogoutUserAPIView, CollegeList, ProfileView
 
 
 urlpatterns = [
@@ -16,5 +16,6 @@ urlpatterns = [
     url(r'^auth/logout/$',
         LogoutUserAPIView.as_view(),
         name='auth_user_logout'),
-    path('colleges/', CollegeList.as_view(), name="colleges")
+    path('colleges/', CollegeList.as_view(), name="colleges"),
+    path('profile/', ProfileView.as_view(), name="profile")
 ]

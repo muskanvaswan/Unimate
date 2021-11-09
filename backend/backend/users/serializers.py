@@ -2,7 +2,7 @@
 
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from .models import College
+from .models import College, Profile
 
 class CreateUserSerializer(serializers.ModelSerializer):
     username = serializers.CharField()
@@ -25,4 +25,9 @@ class CreateUserSerializer(serializers.ModelSerializer):
 class CollegeSerializer(serializers.ModelSerializer):
     class Meta:
         model = College
+        fields = '__all__'
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
         fields = '__all__'

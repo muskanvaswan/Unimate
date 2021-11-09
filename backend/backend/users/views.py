@@ -7,9 +7,10 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework import status
 from rest_framework.views import APIView
-from users.serializers import CreateUserSerializer, CollegeSerializer
-from .models import College
+from users.serializers import CreateUserSerializer, CollegeSerializer, ProfileSerializer
+from .models import College, Profile
 from rest_framework.permissions import AllowAny
+from django.forms.models import model_to_dict
 
 class CreateUserAPIView(CreateAPIView):
     serializer_class = CreateUserSerializer
@@ -22,6 +23,7 @@ class CreateUserAPIView(CreateAPIView):
         headers = self.get_success_headers(serializer.data)
         # We create a token than will be used for future auth
         token = Token.objects.create(user=serializer.instance)
+        profile = Profile.objects.create(user=serializer.instance)
         token_data = {"token": token.key}
         return Response(
             {**serializer.data, **token_data},
@@ -42,3 +44,11 @@ class CollegeList(ListCreateAPIView):
     queryset = College.objects.all().order_by('?')
     serializer_class = CollegeSerializer
     permission_classes = [AllowAny]
+
+class ProfileView(APIView):
+    queryset = Profile.objects.all()
+
+    def get(self, request):
+        data = ProfileSerializer(request.user.profile)
+        print(request.user)
+        return Response(data.data)
