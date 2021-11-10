@@ -3,7 +3,7 @@ import normalize from './responsiveFont'
 import { View, FlatList, StyleSheet, StatusBar, TouchableHighlight } from 'react-native';
 import { Text, ActivityIndicator, Colors } from 'react-native-paper'
 import { useTheme } from 'react-native-paper';
-import axios from 'axios';
+import axios from '../shared/api';
 
 
 const Loading = () => (

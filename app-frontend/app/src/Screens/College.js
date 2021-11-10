@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Text, Button, useTheme } from 'react-native-paper'
-import axios from 'axios'
+import axios from '../../shared/api'
 
 export default function App(props) {
   const { colors } = useTheme();
 
   getData = () => {
     axios
-      .get(`/college/add`, { college: props.route.params.college.id})
+      .get(`/college/add/${props.route.params.college.id}/`, { college: props.route.params.college.id})
       .then(response => {
         console.log('added')
       })

@@ -4,7 +4,7 @@ import { Text } from 'react-native-paper'
 import Colleges from '../YourColleges'
 import Recommended from '../Recommended'
 import Tracker from '../Tracker'
-import axios from 'axios';
+import axios from '../../shared/api';
 export default function App(props) {
 
   getData = () => {
@@ -12,7 +12,7 @@ export default function App(props) {
       .get(`/profile/`)
       .then(response => {
         const profile = response.data;
-        //console.log(profile);
+        console.log(profile);
       })
       .catch(error => console.log(error))
   }

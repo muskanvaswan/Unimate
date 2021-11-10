@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Text, Button, TextInput, Divider, useTheme } from 'react-native-paper'
-import axios from 'axios';
+import axios, { setClientToken } from '../../shared/api';
 
 export default function App({ navigation }) {
   const { colors } = useTheme();
@@ -17,9 +17,9 @@ export default function App({ navigation }) {
       .post(`/auth/login/`, payload)
       .then(response => {
         const { token, user } = response.data;
-
+        console.log(token)
         // We set the returned token as the default authorization header
-        axios.defaults.headers.common.Authorization = `Token ${token}`;
+        setClientToken(token)
 
         // Navigate to the home screen
         navigation.push('Dashboard')
