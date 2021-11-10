@@ -7,17 +7,6 @@ import Tracker from '../Tracker'
 import axios from '../../shared/api';
 export default function App(props) {
 
-  getData = () => {
-    axios
-      .get(`/profile/`)
-      .then(response => {
-        const profile = response.data;
-      })
-      .catch(error => console.log(error))
-  }
-
-  React.useEffect(getData, [props.navigation, props.stacker])
-
   return (
     <View style={styles.container}>
       <View style={styles.tracker}><Tracker /></View>
