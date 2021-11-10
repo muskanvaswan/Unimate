@@ -12,45 +12,6 @@ const Loading = () => (
   </View>
 );
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Wisconssin Madd...',
-    description: 'Cambridge Boston',
-    category: 'target',
-    compatibility: "98%"
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Harvard University',
-    description: 'Cambridge Boston',
-    category: 'dream',
-    compatibility: "98%"
-  },
-  {
-    id: '58694a0f-3da1-471f',
-    title: 'Purdue University',
-    description: 'Cambridge Boston',
-    category: 'safety',
-    compatibility: "98%"
-  },
-  {
-    id: '58694a0f-3da1',
-    title: 'Third Item',
-    description: 'Cambridge Boston',
-    category: 'dream',
-    compatibility: "98%"
-  },
-  {
-    id: '58694a0f',
-    title: 'Third Item',
-    description: 'Cambridge Boston',
-    category: 'dream',
-    compatibility: "98%"
-  },
-];
-
-
 const Item = ({ title, description, category, status, compatibility, item, navigation}) => (
   <TouchableHighlight onPress={() => navigation.push('College', { college: item })}>
     <View style={styles.item}>
