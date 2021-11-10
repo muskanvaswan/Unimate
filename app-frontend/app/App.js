@@ -9,6 +9,7 @@ import Landing from './src/Screens/Landing';
 import Profile from './src/Screens/Profile';
 import Topbar from './src/TopBar';
 import YourColleges from './src/Screens/YourColleges';
+import Recommended from './src/Screens/Recommended';
 import College from './src/Screens/College';
 import Account from './src/Screens/Account';
 import SignUp from './src/Screens/SignUp';
@@ -68,7 +69,12 @@ function App({ navigation }) {
           component={Profile}
         />
         <Drawer.Screen
-          name="YourColleges"
+          name="Recommended"
+        >
+        {() => <Recommended stacker={navigation} />}
+        </Drawer.Screen>
+        <Drawer.Screen
+          name="Your Colleges"
           component={YourColleges}
         />
 
