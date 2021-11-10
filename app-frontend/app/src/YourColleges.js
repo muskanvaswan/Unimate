@@ -12,7 +12,7 @@ const Loading = () => (
 );
 
 const Item = ({ title, description, category, status, item, navigation}) => (
-  <TouchableHighlight onPress={() => navigation.push('College', { college: item })}>
+  <TouchableHighlight onPress={() => navigation.push('College', { college: item, deletable: true })}>
     <View style={styles.item}>
       <View>
         <Text style={styles.description}>{description}</Text>

@@ -62,3 +62,13 @@ class AddCollegeView(APIView):
         profile.save()
 
         return Response(status=200)
+
+class RemoveCollegeView(APIView):
+
+    def get(self, request, college_id = 1):
+        college = College.objects.get(pk=college_id)
+        profile = request.user.profile
+        profile.colleges.remove(college)
+        profile.save()
+
+        return Response(status=200)

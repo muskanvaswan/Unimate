@@ -6,11 +6,19 @@ import axios from '../../shared/api'
 export default function App(props) {
   const { colors } = useTheme();
 
-  getData = () => {
+  addCollege = () => {
     axios
       .get(`/college/add/${props.route.params.college.id}/`, { college: props.route.params.college.id})
       .then(response => {
         console.log('added')
+      })
+      .catch(error => console.log(error));
+  }
+  deleteCollege = () => {
+    axios
+      .get(`/college/delete/${props.route.params.college.id}/`, { college: props.route.params.college.id})
+      .then(response => {
+        props.navigation.goBack()
       })
       .catch(error => console.log(error));
   }
@@ -19,13 +27,22 @@ export default function App(props) {
     <View style={styles.container}>
 
       <Text style={styles.title}>{props.route.params.college.name}</Text>
-      <Button
-        onPress={getData}
-        mode="contained"
-        color={colors.success}
-        icon="plus">
-        Add
-      </Button>
+      {props.deletable?
+        <Button
+          onPress={addCollege}
+          mode="contained"
+          color={colors.primary}
+          icon="plus">
+          Add
+        </Button>:
+        <Button
+          onPress={deleteCollege}
+          mode="contained"
+          color={colors.danger}
+          icon="delete">
+          Delete
+        </Button>
+    }
       <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
     </View>
   );
