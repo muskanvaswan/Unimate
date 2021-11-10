@@ -22,7 +22,7 @@ const Item = ({ title, description, category, status, compatibility, item, navig
       <Text style={[styles.category, {color: status}]}>{category}</Text>
       <View style={styles.status}>
         <Text style={[styles.category, {color: status}]}>{compatibility}</Text>
-        <Text style={styles.description}>Compatibility</Text>
+        <Text style={[styles.description, {textAlign: 'center'}]}>Eligibility</Text>
       </View>
     </View>
   </TouchableHighlight>
@@ -47,7 +47,7 @@ const App = (props) => {
   }
   calculateRec = (college) => {
     let score = college.world_rank / 100 + satScore
-    college['compatibility'] = String(Math.round(score * 1000) / 100) + '%'
+    college['compatibility'] = String(Math.round(score * 1000) / 400) + '%'
     college['category'] = categorize(score)
     college['id'] = college['id'].toString()
     return college
@@ -59,7 +59,7 @@ const App = (props) => {
       .get(`/profile/`)
       .then(response => {
         const profile = response.data;
-        setSatScore(profile.sat_score || 8);
+        setSatScore(profile.sat_score || 8.8);
       })
       .catch(error => console.log(error))
     axios
@@ -68,7 +68,6 @@ const App = (props) => {
         var colleges = response.data;
 
         colleges = colleges.slice(0, 300)
-        console.log("now")
         colleges.forEach(calculateRec);
 
 
