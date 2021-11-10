@@ -55,8 +55,7 @@ class ProfileView(APIView):
 
 class AddCollegeView(APIView):
 
-    def get(self, request):
-        college_id = request.query_params.get('college')
+    def get(self, request, college_id = 1):
         college = College.objects.get(pk=college_id)
         profile = request.user.profile
         profile.colleges.add(college)

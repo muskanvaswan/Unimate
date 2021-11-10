@@ -18,5 +18,5 @@ urlpatterns = [
         name='auth_user_logout'),
     path('colleges/', views.CollegeList.as_view(), name="colleges"),
     path('profile/', views.ProfileView.as_view(), name="profile"),
-    path('college/add/', views.AddCollegeView.as_view(), name="add")
+    path('college/add/<int:college_id>/', views.AddCollegeView.as_view(), name="add")
 ]
