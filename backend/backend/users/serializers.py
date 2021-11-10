@@ -28,6 +28,8 @@ class CollegeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProfileSerializer(serializers.ModelSerializer):
+    colleges = CollegeSerializer(read_only=True, many=True)
+    
     class Meta:
         model = Profile
         fields = '__all__'

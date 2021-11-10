@@ -19,13 +19,13 @@ class Profile(models.Model):
     colleges = models.ManyToManyField(College,  related_name="colleges")
     sat_score = models.IntegerField(null=True)
 
-class Tracker(model.Mode):
-    user = models.ForiegnKeyField(User, on_delete=models.CASCADE, related_name="tracker")
-    college = models.ForiegnKeyField(College, on_delete=models.CASCADE, related_name="tracker")
-    deadline = models.ManyToManyField(Deadline, related_name="deadlines")
-    category = models.CharField()
-
 class Deadline(models.Model):
     date = models.DateTimeField()
     title = models.CharField(max_length=200)
     status = models.BooleanField(default=False)
+
+class Tracker(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tracker")
+    college = models.ForeignKey(College, on_delete=models.CASCADE, related_name="tracker")
+    deadline = models.ManyToManyField(Deadline, related_name="deadlines")
+    category = models.CharField(max_length=20)
