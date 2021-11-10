@@ -32,6 +32,7 @@ const App = (props) => {
   const { colors } = useTheme();
   const [ loading, setLoading ] = React.useState(false);
   const [ data, setData ] = React.useState([]);
+  const [ satScore, setSatScore ] = React.useState(8);
 
   categorize = (score) => {
     if (9 <= score && score <= 10)
@@ -45,7 +46,7 @@ const App = (props) => {
     return (name.length > 20? name.slice(0, 17) + "..." : name)
   }
   calculateRec = (college) => {
-    let score = college.world_rank / 100 + 8.8
+    let score = college.world_rank / 100 + satScore
     college['compatibility'] = String(Math.round(score * 1000) / 100) + '%'
     college['category'] = categorize(score)
     college['id'] = college['id'].toString()
@@ -54,6 +55,13 @@ const App = (props) => {
 
   getData = () => {
     setLoading(true);
+    axios
+      .get(`/profile/`)
+      .then(response => {
+        const profile = response.data;
+        setSatScore(profile.sat_score || 8);
+      })
+      .catch(error => console.log(error))
     axios
       .get(`/colleges/`)
       .then(response => {
@@ -68,11 +76,12 @@ const App = (props) => {
         setLoading(false)
       })
       .catch(error => console.log(error));
+
+
   }
 
-  React.useEffect(() => {
-    getData();
-  }, [])
+  React.useEffect(getData, [props.navigation, props.stacker])
+
   const statusColors = {
     "dream": colors.success,
     "target": colors.primary,
