@@ -5,10 +5,10 @@ import Colleges from '../YourColleges'
 
 export default function App(props) {
   return (
-    <View style={styles.container}>
-      <View style={styles.colleges}><Colleges withoutTitle={true}/></View>
-      <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
-    </View>
+      <View style={styles.container}>
+        <View style={styles.colleges}><Colleges navigation={props.navigation} collegeNavigator={props.stacker}/></View>
+        <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
+      </View>
   );
 }
 
