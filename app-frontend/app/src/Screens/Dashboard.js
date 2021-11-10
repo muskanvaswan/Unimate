@@ -12,18 +12,18 @@ export default function App(props) {
       .get(`/profile/`)
       .then(response => {
         const profile = response.data;
-        console.log(profile);
       })
       .catch(error => console.log(error))
   }
 
-  React.useEffect(getData, [])
+  React.useEffect(getData, [props.navigation, props.stacker])
 
   return (
     <View style={styles.container}>
       <View style={styles.tracker}><Tracker /></View>
-      <View style={styles.colleges}><Colleges /></View>
-      <View style={styles.colleges}><Recommended navigation={props.navigation} collegeNavigator={props.stacker}/></View>
+      <View style={[styles.colleges, {maxHeight: '40%'}]}><Colleges navigation={props.navigation} collegeNavigator={props.stacker}/></View>
+
+      <View style={[styles.colleges, {flex: 1}]}><Recommended navigation={props.navigation} collegeNavigator={props.stacker}/></View>
       <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
     </View>
   );
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     //marginTop: 10,
     marginBottom: 10,
     //height: '40%',
-    flex: 1,
+    //flex: 1,
     width: '90%',
     backgroundColor: 'rgba(58, 57, 57, 0.2)',
     borderRadius: 10,
