@@ -26,6 +26,7 @@ const App = (props) => {
   const { colors } = useTheme();
   const [ loading, setLoading ] = React.useState(false);
   const [ data, setData ] = React.useState([]);
+  const [ satScore, setSatScore ] = React.useState(8.8);
 
   categorize = (score) => {
     if (9 <= score && score <= 10)
@@ -40,7 +41,7 @@ const App = (props) => {
     return (name.length > 30? name.slice(0, 27) + "..." : name)
   }
   calculateRec = (college) => {
-    let score = college.world_rank / 100 + 8.8
+    let score = college.world_rank / 100 + satScore
     college['category'] = categorize(score)
     college['id'] = college['id'].toString()
     return college
@@ -52,9 +53,11 @@ const App = (props) => {
       .get(`/profile/`)
       .then(response => {
         const profile = response.data;
+        console.log(profile)
         var colleges = profile.colleges
         colleges.forEach(calculateRec)
         setData(colleges)
+        setSatScore(profile.sat_score || 8.8)
         //console.log(profile.colleges)
         setLoading(false)
       })
