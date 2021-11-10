@@ -43,7 +43,7 @@ const App = (props) => {
       return "safety"
   }
   elipsise = (name) => {
-    return (name.length > 20? name.slice(0, 17) + "..." : name)
+    return (name.length > 17? name.slice(0, 17) + "..." : name)
   }
   calculateRec = (college) => {
     let score = college.world_rank / 100 + satScore

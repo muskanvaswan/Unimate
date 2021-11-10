@@ -6,7 +6,7 @@ import Colleges from '../YourColleges'
 export default function App(props) {
   return (
       <View style={styles.container}>
-        <View style={styles.colleges}><Colleges navigation={props.navigation} collegeNavigator={props.stacker}/></View>
+        <View style={styles.colleges}><Colleges navigation={props.navigation} collegeNavigator={props.stacker} categorize={true}/></View>
         <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
       </View>
   );
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     height: '150%',
     position: 'absolute',
     bottom: -450,
-    left: -10
+    left: -10,
+    zIndex: -1
   }
 });

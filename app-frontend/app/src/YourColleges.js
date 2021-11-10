@@ -11,7 +11,7 @@ const Loading = () => (
   </View>
 );
 
-const Item = ({ title, description, category, status, compatibility, item, navigation}) => (
+const Item = ({ title, description, category, status, item, navigation}) => (
   <TouchableHighlight onPress={() => navigation.push('College', { college: item })}>
     <View style={styles.item}>
       <View>
@@ -83,15 +83,52 @@ const App = (props) => {
     />
   );
 
+  const renderItemCategorized = ({ item }) => (
+    <Item
+      title={elipsise(item.name)}
+      description={item.country}
+      category={item.category}
+      status={'#fff'}
+      item={item}
+      navigation={props.collegeNavigator}
+    />
+  );
+
   return (
-    <View style={styles.container}>
-      {!props.withoutTitle && <Text style={styles.heading}>Your Colleges</Text>}
-      {!loading ? <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />: <Loading />}
-    </View>
+    props.categorize ?
+      <View style={[styles.container,{flex: 1}]}>
+        {!props.withoutTitle && <Text style={styles.heading}>Your Colleges</Text>}
+        <View style={[styles.category, {backgroundColor: colors.success + '40', flex: 1}]}>
+          {!loading ? <FlatList
+            data={data.filter((item) => item.category == 'dream')}
+            renderItem={renderItemCategorized}
+            keyExtractor={item => item.id}
+          />: <Loading />}
+        </View>
+        <View style={[styles.category, {backgroundColor: colors.primary + '40', flex: 1}]}>
+          {!loading ? <FlatList
+            data={data.filter((item) => item.category == 'target')}
+            renderItem={renderItemCategorized}
+            keyExtractor={item => item.id}
+          />: <Loading />}
+        </View>
+        <View style={[styles.category, {backgroundColor: colors.danger + '40', flex: 1}]}>
+          {!loading ? <FlatList
+            data={data.filter((item) => item.category == 'safety')}
+            renderItem={renderItemCategorized}
+            keyExtractor={item => item.id}
+          />: <Loading />}
+        </View>
+
+      </View> :
+      <View style={styles.container}>
+        {!props.withoutTitle && <Text style={styles.heading}>Your Colleges</Text>}
+        {!loading ? <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />: <Loading />}
+      </View>
   );
 }
 
@@ -127,6 +164,17 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     overflow: 'hidden',
     right: 0,
+  },
+  category: {
+    marginTop: 10,
+    marginBottom: 10,
+    //height: '40%',
+    //flex: 1,
+    width: '100%',
+    borderRadius: 10,
+    overflow: 'scroll',
+    padding: 15,
+    paddingTop: 0,
   }
 });
 
