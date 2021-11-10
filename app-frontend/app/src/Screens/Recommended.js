@@ -6,18 +6,6 @@ import Recommended from '../Recommended'
 
 export default function App(props) {
 
-  getData = () => {
-    axios
-      .get(`/profile/`)
-      .then(response => {
-        const profile = response.data;
-        console.log(profile);
-      })
-      .catch(error => console.log(error))
-  }
-
-  //React.useEffect(getData, [])
-
   return (
     <View style={styles.container}>
       <View style={styles.colleges}><Recommended navigation={props.navigation} collegeNavigator={props.stacker}/></View>
