@@ -1,100 +1,93 @@
 import React from 'react';
 import normalize from './responsiveFont'
-import { View, FlatList, StyleSheet, StatusBar } from 'react-native';
-import { Text } from 'react-native-paper'
+import { View, FlatList, StyleSheet, StatusBar, TouchableHighlight } from 'react-native';
+import { Text, ActivityIndicator, Colors } from 'react-native-paper'
 import { useTheme } from 'react-native-paper';
+import axios from '../shared/api';
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Wisconssin Maddison',
-    description: 'Cambridge Boston',
-    status: 'remaining'
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Harvard University',
-    description: 'Cambridge Boston',
-    status: 'complete'
-  },
-  {
-    id: '58694a0f-3da1-471f',
-    title: 'Purdue University',
-    description: 'Cambridge Boston',
-    status: 'urgent'
-  },
-  {
-    id: '58694a0f-3da1',
-    title: 'Third Item',
-    description: 'Cambridge Boston',
-    status: 'complete'
-  },
-  {
-    id: '58694a0f',
-    title: 'Third Item',
-    description: 'Cambridge Boston',
-    status: 'complete'
-  },
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba23oi43',
-    title: 'Wisconssin Maddison',
-    description: 'Cambridge Boston',
-    status: 'remaining'
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f6323iy43',
-    title: 'Harvard University',
-    description: 'Cambridge Boston',
-    status: 'complete'
-  },
-  {
-    id: '58694a0f-3da1-471f32uy43',
-    title: 'Purdue University',
-    description: 'Cambridge Boston',
-    status: 'urgent'
-  },
-  {
-    id: '58694a0f-3da1i3yi4',
-    title: 'Third Item',
-    description: 'Cambridge Boston',
-    status: 'complete'
-  },
-  {
-    id: '58694a0f738',
-    title: 'Third Item',
-    description: 'Cambridge Boston',
-    status: 'complete'
-  },
-];
-
-
-const Item = ({ title, description, status}) => (
-  <View style={styles.item}>
-    <Text style={styles.description}>{description}</Text>
-    <Text style={styles.title}>{title}</Text>
-    <View style={[styles.status, {backgroundColor: status}]}/>
+const Loading = () => (
+  <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+    <ActivityIndicator animating={true} color={Colors.purple800} size={70} />
   </View>
+);
+
+const Item = ({ title, description, category, status, compatibility, item, navigation}) => (
+  <TouchableHighlight onPress={() => navigation.push('College', { college: item })}>
+    <View style={styles.item}>
+      <View>
+        <Text style={styles.description}>{description}</Text>
+        <Text style={[styles.title, {color: status}]}>{title}</Text>
+      </View>
+    </View>
+  </TouchableHighlight>
 );
 
 const App = (props) => {
   const { colors } = useTheme();
-  const statusColors = {
-    "complete": colors.success,
-    "remaining": colors.waiting,
-    "urgent": colors.danger
+  const [ loading, setLoading ] = React.useState(false);
+  const [ data, setData ] = React.useState([]);
+
+  categorize = (score) => {
+    if (9 <= score && score <= 10)
+      return "target"
+    else if (score < 9)
+      return "dream"
+    else if (score > 10)
+      return "safety"
   }
+
+  elipsise = (name) => {
+    return (name.length > 30? name.slice(0, 27) + "..." : name)
+  }
+  calculateRec = (college) => {
+    let score = college.world_rank / 100 + 8.8
+    college['category'] = categorize(score)
+    college['id'] = college['id'].toString()
+    return college
+  }
+
+  getData = () => {
+    setLoading(true);
+    axios
+      .get(`/profile/`)
+      .then(response => {
+        const profile = response.data;
+        var colleges = profile.colleges
+        colleges.forEach(calculateRec)
+        setData(colleges)
+        //console.log(profile.colleges)
+        setLoading(false)
+      })
+      .catch(error => console.log(error));
+  }
+
+  React.useEffect(getData, [props.navigation, props.stacker])
+
+  const statusColors = {
+    "dream": colors.success,
+    "target": colors.primary,
+    "safety": colors.danger
+  }
+
   const renderItem = ({ item }) => (
-    <Item title={item.title} description={item.description} status={statusColors[item.status]}/>
+    <Item
+      title={elipsise(item.name)}
+      description={item.country}
+      category={item.category}
+      status={statusColors[item.category]}
+      item={item}
+      navigation={props.collegeNavigator}
+    />
   );
+
   return (
     <View style={styles.container}>
       {!props.withoutTitle && <Text style={styles.heading}>Your Colleges</Text>}
-      <FlatList
-        data={DATA}
+      {!loading ? <FlatList
+        data={data}
         renderItem={renderItem}
         keyExtractor={item => item.id}
-        style={{flex: 1}}
-      />
+      />: <Loading />}
     </View>
   );
 }
@@ -102,7 +95,6 @@ const App = (props) => {
 const styles = StyleSheet.create({
   container: {
     padding: normalize(10),
-    flexGrow: 1
   },
   heading: {
     fontSize: 30
