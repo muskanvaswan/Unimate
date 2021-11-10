@@ -75,9 +75,9 @@ function App({ navigation }) {
         </Drawer.Screen>
         <Drawer.Screen
           name="Your Colleges"
-          component={YourColleges}
-        />
-
+        >
+        {() => <YourColleges stacker={navigation} />}
+        </Drawer.Screen>
 
       </Drawer.Navigator>
     </NavigationContainer>
