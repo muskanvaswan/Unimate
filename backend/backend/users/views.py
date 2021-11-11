@@ -73,7 +73,7 @@ class RemoveCollegeView(APIView):
 
         return Response(status=200)
 
-class AddDealineView(APIView):
+class DealineView(APIView):
 
     def create(self, request, college_id):
         college = College.objects.get(pk=college_id)
