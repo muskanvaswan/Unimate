@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework import status
 from rest_framework.views import APIView
-from users.serializers import CreateUserSerializer, CollegeSerializer, ProfileSerializer
+from users.serializers import CreateUserSerializer, CollegeSerializer, ProfileSerializer, TrackerSerializer
 from .models import College, Profile, Deadline, Tracker
 from rest_framework.permissions import AllowAny
 from django.forms.models import model_to_dict
@@ -95,4 +95,4 @@ class AddDealineView(APIView):
 
         tracker = Tracker.objects.get_or_create(user=user, college=college)
 
-        return Response(tracker.deadline)
+        return Response(TrackerSerializer(tracker).data)
