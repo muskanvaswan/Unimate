@@ -6,11 +6,21 @@ import Recommended from '../Recommended'
 import Tracker from '../Tracker'
 import axios from '../../shared/api';
 export default function App(props) {
+  const [, updateState] = React.useState();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
+  const [ reload, setReload ] = React.useState(false);
+
+  React.useEffect(() => {
+    const reload = props.stacker.addListener('focus', forceUpdate)
+
+  }, [props.stacker])
+
+  React.useEffect(() => setReload(true), [])
 
   return (
     <View style={styles.container}>
       <View style={styles.tracker}><Tracker /></View>
-      <View style={[styles.colleges, {maxHeight: '40%'}]}><Colleges navigation={props.navigation} collegeNavigator={props.stacker}/></View>
+      <View style={[styles.colleges, {maxHeight: '40%'}]}><Colleges navigation={props.navigation} collegeNavigator={props.stacker} reload={reload}/></View>
 
       <View style={[styles.colleges, {flex: 1}]}><Recommended navigation={props.navigation} collegeNavigator={props.stacker}/></View>
       <Image style={styles.gradient} source={require('../../assets/gradient.png')} />

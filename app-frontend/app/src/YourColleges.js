@@ -43,6 +43,7 @@ const App = (props) => {
   calculateRec = (college) => {
     let score = college.world_rank / 100 + satScore
     college['category'] = categorize(score)
+    college['eligibility'] = String(Math.round(score * 1000) / 400) + '%'
     college['id'] = college['id'].toString()
     return college
   }
@@ -53,7 +54,7 @@ const App = (props) => {
       .get(`/profile/`)
       .then(response => {
         const profile = response.data;
-        console.log(profile)
+        //console.log(profile)
         var colleges = profile.colleges
         colleges.forEach(calculateRec)
         setData(colleges)
@@ -69,19 +70,15 @@ const App = (props) => {
       const reload = props.navigation.addListener('focus', () => {
        getData();
       });
-      return reload
     }
 
   }, [props.navigation])
 
   React.useEffect(() =>{
-    const reload = props.collegeNavigator.addListener('focus', () => {
-     getData();
-    });
-    return reload
+    const reload = props.collegeNavigator.addListener('focus', getData)
   }, [props.collegeNavigator])
 
-  React.useEffect(getData, [props.collegeNavigator, props.navigation, ''])
+  React.useEffect(getData, [props.collegeNavigator, props.navigation, props.reload])
 
   const statusColors = {
     "dream": colors.success,
