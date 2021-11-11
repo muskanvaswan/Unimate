@@ -44,7 +44,7 @@ function App({ navigation }) {
 
   return (
 
-    <NavigationContainer independent={true}>
+    <NavigationContainer independent={true} theme={theme}>
       <Drawer.Navigator
         initialRouteName="Dashboard"
         screenOptions={{
@@ -96,7 +96,7 @@ export default function MyStack() {
   })
   return (
     <PaperProvider theme={theme}>
-    <NavigationContainer>
+    <NavigationContainer theme={theme}>
     <Stack.Navigator>
       <Stack.Screen
         name="Landing"
@@ -130,6 +130,7 @@ export default function MyStack() {
         name="College"
         component={College}
         options={{
+          title: '',
           headerStyle: {
             backgroundColor: theme.colors.background,
           }
