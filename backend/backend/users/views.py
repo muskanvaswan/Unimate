@@ -79,13 +79,14 @@ class DeadlineView(APIView):
         college = College.objects.get(pk=college_id)
         user = request.user
 
-        data = request.data
-        deadline = Deadline(date=data['date'], title=data['title'])
-        deadline.save()
+        if college in user.colleges:
+            data = request.data
+            deadline = Deadline(date=data['date'], title=data['title'])
+            deadline.save()
 
-        tracker = Tracker.objects.get_or_create(user=user, college=college)[0]
-        tracker.deadline.add(deadline)
-        tracker.save()
+            tracker = Tracker.objects.get_or_create(user=user, college=college)[0]
+            tracker.deadline.add(deadline)
+            tracker.save()
 
         return Response(status=200)
 
