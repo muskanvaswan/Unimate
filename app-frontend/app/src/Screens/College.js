@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, ScrollView, Image } from 'react-native';
 import { Text, Button, useTheme, FAB } from 'react-native-paper'
 import axios from '../../shared/api'
 
@@ -38,6 +38,7 @@ export default function App(props) {
 
   return (
     <View style={styles.container}>
+    <ScrollView style={{padding: 20}}>
 
       <Text style={styles.title}>{college.name}</Text>
       <View style={{display: 'flex', flexDirection: 'row'}}>
@@ -49,30 +50,77 @@ export default function App(props) {
           <Text style={styles.category}>{college.category}</Text>
         </View>
       </View>
-      {!props.route.params.deletable ?
-        <FAB
-          onPress={addCollege}
-          mode="contained"
-          style={[styles.fab, {backgroundColor: colors.primary}]}
-          icon="plus"/>:
-        <FAB
-          onPress={deleteCollege}
-          mode="contained"
-          style={[styles.fab, {backgroundColor: colors.danger}]}
-          icon="delete" />
-    }
+      {college.description != '' &&
+        <View style={styles.description}>
+          <Text>{college.description}</Text>
+        </View>
+      }
+      <View style={styles.eligibility}>
+        <View style={{width: '70%'}}>
+          <Text style={styles.heading}>Eligibility</Text>
+          <Text>Please note that this number was calculated only by available objective pointers. It is in no way a promise of admission or the lack of it. Remember, the college process is randomized to a large degree. </Text>
+        </View>
+        <View style={{width: '30%', justifyContent: 'center'}}>
+          <Text style={[styles.heading, {color: statusColors[college.category], textAlign: 'center'}]}>{college.eligibility}</Text>
+        </View>
+      </View>
+      <View style={[styles.scoreBoard, {backgroundColor: statusColors[college.category] + '20'}]}>
+        <Text style={[styles.heading, {textAlign: 'center'}]}>Scores</Text>
+        <View style={styles.scores}>
+          <View style={styles.score}>
+            <Text style={styles.rank}>{Math.round(college.research)}</Text>
+            <Text style={{fontSize: 18}}>Research</Text>
+          </View>
+          <View style={styles.score}>
+            <Text style={styles.rank}>{Math.round(college.citations)}</Text>
+            <Text style={{fontSize: 18}}>Citations</Text>
+          </View>
+        </View>
+        <View style={styles.scores}>
+          <View style={styles.score}>
+            <Text style={styles.rank}>{Math.round(college.teaching)}</Text>
+            <Text style={{fontSize: 18}}>Teaching</Text>
+          </View>
+          <View style={styles.score}>
+            <Text style={styles.rank}>{Math.round(college.income)}</Text>
+            <Text style={{fontSize: 18}}>Income</Text>
+          </View>
+        </View>
+        <View style={styles.scores}>
+          <View style={styles.score}>
+            <Text style={styles.rank}>{Math.round(college.international)}</Text>
+            <Text style={{fontSize: 18}}>International</Text>
+          </View>
+          <View style={styles.score}>
+            <Text style={[styles.rank, {color: colors.highlight}]}>{Math.round(college.total_score)}</Text>
+            <Text style={{fontSize: 18, color: colors.highlight, fontWeight: 'bold'}}>Total</Text>
+          </View>
+        </View>
+      </View>
       <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
+    </ScrollView>
+    {!props.route.params.deletable ?
+      <FAB
+        onPress={addCollege}
+        mode="contained"
+        style={[styles.fab, {backgroundColor: colors.primary}]}
+        icon="plus"/>:
+      <FAB
+        onPress={deleteCollege}
+        mode="contained"
+        style={[styles.fab, {backgroundColor: colors.danger}]}
+        icon="delete" />
+    }
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#1b1b1b',
     color: '#fff',
-    padding: 20,
     width: '100%',
+    overflow: 'scroll'
   },
   fab: {
     position: 'absolute',
@@ -113,5 +161,36 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textTransform: 'capitalize',
     color: 'rgba(66, 66, 66, 0.71)'
+  },
+  description: {
+    marginTop: 10,
+  },
+  heading: {
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  eligibility: {
+    flexDirection: 'row',
+    display: 'flex',
+    backgroundColor: 'rgba(112, 110, 111, 0.43)',
+    padding: 10,
+    borderRadius: 10,
+    alignItems: 'center'
+  },
+  scoreBoard: {
+    padding: 10,
+    borderRadius: 10,
+    marginTop: 10
+  },
+  scores: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  score: {
+    width: '50%',
+    padding: 15,
+    textAlign: 'center',
+    alignItems: 'center'
   }
+
 });
