@@ -73,9 +73,9 @@ class RemoveCollegeView(APIView):
 
         return Response(status=200)
 
-class DealineView(APIView):
+class DeadlineView(APIView):
 
-    def create(self, request, college_id):
+    def post(self, request, college_id):
         college = College.objects.get(pk=college_id)
         user = request.user
 
@@ -83,7 +83,7 @@ class DealineView(APIView):
         deadline = Deadline(date=data['date'], title=data['title'])
         deadline.save()
 
-        tracker = Tracker.objects.get_or_create(user=user, college=college)
+        tracker = Tracker.objects.get_or_create(user=user, college=college)[0]
         tracker.deadline.add(deadline)
         tracker.save()
 
@@ -93,6 +93,6 @@ class DealineView(APIView):
         college = College.objects.get(pk=college_id)
         user = request.user
 
-        tracker = Tracker.objects.get_or_create(user=user, college=college)
+        tracker = Tracker.objects.get(user=user, college=college)
 
         return Response(TrackerSerializer(tracker).data)

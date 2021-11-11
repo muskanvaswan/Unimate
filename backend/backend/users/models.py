@@ -30,4 +30,6 @@ class Tracker(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tracker")
     college = models.ForeignKey(College, on_delete=models.CASCADE, related_name="tracker")
     deadline = models.ManyToManyField(Deadline, related_name="deadlines")
-    category = models.CharField(max_length=20)
+
+    class Meta:
+        unique_together = ('user', 'college')

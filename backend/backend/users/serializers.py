@@ -41,7 +41,8 @@ class DeadlineSerializer(serializers.ModelSerializer):
 
 class TrackerSerializer(serializers.ModelSerializer):
     deadline = DeadlineSerializer(read_only=True, many=True)
+    college = CollegeSerializer(read_only=True)
 
     class Meta:
         model = Tracker
-        fields = '__all__'
+        fields = ['deadline', 'college']
