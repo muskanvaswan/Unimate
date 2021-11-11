@@ -12,6 +12,8 @@ class College(models.Model):
     income = models.DecimalField(max_digits=19, decimal_places=10)
     total_score = models.DecimalField(max_digits=19, decimal_places=10)
     num_students = models.IntegerField()
+    description = models.CharField(max_length=1000, null=True)
+    url = models.CharField(max_length=600, null=True)
 
 
 class Profile(models.Model):
