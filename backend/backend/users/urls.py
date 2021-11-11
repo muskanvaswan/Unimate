@@ -21,4 +21,5 @@ urlpatterns = [
     path('college/add/<int:college_id>/', views.AddCollegeView.as_view(), name="add"),
     path('college/delete/<int:college_id>/', views.RemoveCollegeView.as_view(), name="delete"),
     path('deadline/<int:college_id>/', views.DeadlineView.as_view(), name="deadline"),
+    path('deadline/status/<int:deadline_id>/', views.DeadlineView.as_view(), name="status_deadline"),
 ]

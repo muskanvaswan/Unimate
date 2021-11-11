@@ -97,3 +97,11 @@ class DeadlineView(APIView):
         tracker = Tracker.objects.get(user=user, college=college)
 
         return Response(TrackerSerializer(tracker).data)
+
+class DeadlineStatusUpdateView(APIView):
+    def update(self, request, deadline_id):
+        deadline = Deadline.objects.get(pk=deadline_id)
+        deadline.status = request.data['status']
+        deadline.save()
+
+        return Response(status=200)
