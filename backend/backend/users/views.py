@@ -8,7 +8,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework import status
 from rest_framework.views import APIView
 from users.serializers import CreateUserSerializer, CollegeSerializer, ProfileSerializer
-from .models import College, Profile
+from .models import College, Profile, Deadline, Tracker
 from rest_framework.permissions import AllowAny
 from django.forms.models import model_to_dict
 
@@ -72,3 +72,27 @@ class RemoveCollegeView(APIView):
         profile.save()
 
         return Response(status=200)
+
+class AddDealineView(APIView):
+
+    def create(self, request, college_id):
+        college = College.objects.get(pk=college_id)
+        user = request.user
+
+        data = request.data
+        deadline = Deadline(date=data['date'], title=data['title'])
+        deadline.save()
+
+        tracker = Tracker.objects.get_or_create(user=user, college=college)
+        tracker.deadline.add(deadline)
+        tracker.save()
+
+        return Response(status=200)
+
+    def get(self, request, college_id):
+        college = College.objects.get(pk=college_id)
+        user = request.user
+
+        tracker = Tracker.objects.get_or_create(user=user, college=college)
+
+        return Response(tracker.deadline)
