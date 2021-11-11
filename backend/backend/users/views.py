@@ -99,9 +99,10 @@ class DeadlineView(APIView):
         return Response(TrackerSerializer(tracker).data)
 
 class DeadlineStatusUpdateView(APIView):
-    def update(self, request, deadline_id):
+    
+    def post(self, request, deadline_id):
         deadline = Deadline.objects.get(pk=deadline_id)
-        deadline.status = request.data['status']
+        deadline.status = bool(request.data['status'])
         deadline.save()
 
         return Response(status=200)
