@@ -64,7 +64,24 @@ const App = (props) => {
       .catch(error => console.log(error));
   }
 
-  React.useEffect(getData, [props.navigation, props.stacker])
+  React.useEffect(() =>{
+    if (props.navigation) {
+      const reload = props.navigation.addListener('focus', () => {
+       getData();
+      });
+      return reload
+    }
+
+  }, [props.navigation])
+
+  React.useEffect(() =>{
+    const reload = props.collegeNavigator.addListener('focus', () => {
+     getData();
+    });
+    return reload
+  }, [props.collegeNavigator])
+
+  React.useEffect(getData, [props.collegeNavigator, props.navigation, ''])
 
   const statusColors = {
     "dream": colors.success,

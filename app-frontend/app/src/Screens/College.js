@@ -27,7 +27,7 @@ export default function App(props) {
     <View style={styles.container}>
 
       <Text style={styles.title}>{props.route.params.college.name}</Text>
-      {props.deletable?
+      {!props.route.params.deletable ?
         <Button
           onPress={addCollege}
           mode="contained"
