@@ -2,10 +2,12 @@ import React from 'react';
 import { StyleSheet, View, ScrollView, Image } from 'react-native';
 import { Text, Button, useTheme, FAB } from 'react-native-paper'
 import axios from '../../shared/api'
+import DeadlineCreate from '../DeadlineCreate'
 
 export default function App(props) {
   const { colors } = useTheme();
   const college = props.route.params.college
+  const [ deadlineVisible, setDeadlineVisible ] = React.useState(false);
 
   addCollege = () => {
     axios
@@ -98,7 +100,9 @@ export default function App(props) {
         </View>
       </View>
       <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
+
     </ScrollView>
+
     {!props.route.params.deletable ?
       <FAB
         onPress={addCollege}
@@ -111,6 +115,21 @@ export default function App(props) {
         style={[styles.fab, {backgroundColor: colors.danger}]}
         icon="delete" />
     }
+    {deadlineVisible &&
+      <>
+        <View style={styles.backdrop} />
+        {props.route.params.deletable && <DeadlineCreate setVisible={setDeadlineVisible}/>}
+      </>
+    }
+    {props.route.params.deletable &&
+      <FAB
+        onPress={() => setDeadlineVisible(!deadlineVisible)}
+        mode="contained"
+        label={!deadlineVisible ? 'Add a deadline' : ""}
+        style={[styles.fabLeft, {backgroundColor: deadlineVisible? colors.danger: colors.primary}]}
+        icon={deadlineVisible? "close": "plus"}/>
+    }
+
     </View>
   );
 }
@@ -126,6 +145,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     margin: 16,
     right: 0,
+    bottom: 0,
+  },
+  fabLeft: {
+    position: 'absolute',
+    margin: 16,
+    left: 0,
     bottom: 0,
   },
   title: {
@@ -191,6 +216,12 @@ const styles = StyleSheet.create({
     padding: 15,
     textAlign: 'center',
     alignItems: 'center'
+  },
+  backdrop: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.77)',
+    zIndex: 0
   }
-
 });
