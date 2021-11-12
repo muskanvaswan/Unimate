@@ -10,6 +10,7 @@ import Profile from './src/Screens/Profile';
 import Topbar from './src/TopBar';
 import YourColleges from './src/Screens/YourColleges';
 import Recommended from './src/Screens/Recommended';
+import Deadlines from './src/Screens/Deadlines';
 import College from './src/Screens/College';
 import Account from './src/Screens/Account';
 import SignUp from './src/Screens/SignUp';
@@ -78,7 +79,11 @@ function App({ navigation }) {
         >
         {() => <YourColleges stacker={navigation} />}
         </Drawer.Screen>
-
+        <Drawer.Screen
+          name="All Deadlines"
+        >
+        {() => <Deadlines stacker={navigation} />}
+        </Drawer.Screen>
       </Drawer.Navigator>
     </NavigationContainer>
 
