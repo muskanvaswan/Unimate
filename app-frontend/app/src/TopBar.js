@@ -12,10 +12,8 @@ const Profile = () => (
 
 const MyComponent = ({ navigation }) => (
  <Appbar style={styles.top}>
-    <Appbar.Action icon="menu" onPress={() => navigation.toggleDrawer()} />
-    <View style={styles.right}>
-      <Profile />
-    </View>
+    <Appbar.Action icon="menu" style={styles.right} onPress={() => navigation.toggleDrawer()} />
+
   </Appbar>
  );
 
