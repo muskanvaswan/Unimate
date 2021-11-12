@@ -114,3 +114,11 @@ class DeadlineDelete(APIView):
         deadline.delete()
 
         return Response(status=200)
+
+class UserTrackerList(APIView):
+
+
+    def get(self, request):
+        trackers = request.user.tracker.all()
+        trackers = TrackerSerializer(trackers, many=True)
+        return Response(data=trackers.data)

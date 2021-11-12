@@ -23,4 +23,5 @@ urlpatterns = [
     path('deadline/<int:college_id>/', views.DeadlineView.as_view(), name="deadline"),
     path('status/<int:deadline_id>/', views.DeadlineStatusUpdateView.as_view(), name="status_deadline"),
     path('deadline/delete/<int:deadline_id>/', views.DeadlineDelete.as_view(), name="delete_deadline"),
+    path('deadlines/', views.UserTrackerList.as_view(), name="trackers"),
 ]
