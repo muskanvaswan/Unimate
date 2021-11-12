@@ -21,12 +21,11 @@ const MyComponent = (props) => {
       axios
         .post(`deadline/${props.collegeId}/`, payload)
         .then(response => {
-          console.log('done')
+          props.setVisible(false);
         })
         .catch(error => console.log(error));
     }
-    console.log(date)
-    props.setVisible(false);
+
   }
   return (
     <View style={[styles.container, {backgroundColor: colors.background,}]}>
