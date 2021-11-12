@@ -28,6 +28,22 @@ const Item = ({ title, description, category, status, eligibility, item, navigat
   </TouchableHighlight>
 );
 
+const ItemCards = ({ title, description, category, status, eligibility, item, navigation}) => (
+  <TouchableHighlight onPress={() => navigation.push('College', { college: item })}>
+    <View style={[styles.itemCard, {backgroundColor: status + '20'}]}>
+      <View>
+        <Text style={styles.description}>{description}</Text>
+        <Text style={styles.title}>{title}</Text>
+      </View>
+      <Text style={[styles.category, {color: status}]}>{category}</Text>
+      <View style={styles.status}>
+        <Text style={[styles.category, {color: status}]}>{eligibility}</Text>
+        <Text style={[styles.description, {textAlign: 'center'}]}>Eligibility</Text>
+      </View>
+    </View>
+  </TouchableHighlight>
+);
+
 const App = (props) => {
   const { colors } = useTheme();
   const [ loading, setLoading ] = React.useState(false);
@@ -97,6 +113,19 @@ const App = (props) => {
       navigation={props.collegeNavigator}
     />
   );
+
+  const renderItemCards = ({ item }) => (
+    <ItemCards
+      title={elipsise(item.name)}
+      description={item.country}
+      category={item.category}
+      eligibility={item.eligibility}
+      status={statusColors[item.category]}
+      item={item}
+      navigation={props.collegeNavigator}
+    />
+  );
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Recommended</Text>
@@ -104,7 +133,7 @@ const App = (props) => {
         <Loading />
         : <FlatList
           data={data}
-          renderItem={renderItem}
+          renderItem={props.cards? renderItemCards: renderItem}
           keyExtractor={item => item.id}
         />
       }
@@ -131,6 +160,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     borderBottomColor: 'rgba(152, 152, 152, 0.67)',
     borderBottomWidth: 1
+  },
+  itemCard: {
+    position: 'relative',
+    paddingTop: normalize(15),
+    paddingBottom: normalize(5),
+    display: 'flex',
+    flexDirection: 'row',
+    marginVertical: 5,
+    marginHorizontal: 5,
+    padding: 10,
+    borderRadius: 10
   },
   title: {
     fontSize: Platform.OS === 'android'? normalize(15): normalize(18),

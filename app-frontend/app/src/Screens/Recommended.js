@@ -8,7 +8,7 @@ export default function App(props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.colleges}><Recommended navigation={props.navigation} collegeNavigator={props.stacker}/></View>
+      <View style={styles.colleges}><Recommended navigation={props.navigation} collegeNavigator={props.stacker} cards={true}/></View>
       <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
     </View>
   );
@@ -28,8 +28,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     //height: '40%',
     flex: 1,
-    width: '90%',
-    backgroundColor: 'rgba(58, 57, 57, 0.2)',
+    width: '100%',
     borderRadius: 10,
     overflow: 'scroll'
   },
