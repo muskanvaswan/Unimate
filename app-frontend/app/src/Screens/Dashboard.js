@@ -9,17 +9,30 @@ export default function App(props) {
   const [, updateState] = React.useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);
   const [ reload, setReload ] = React.useState(false);
+  const [ noOfDeadlines, setNoOfDeadlines ] = React.useState(0)
+  const [ closestDeadline, setClosestDeadline ] = React.useState(new Date())
 
   React.useEffect(() => {
     const reload = props.stacker.addListener('focus', forceUpdate)
 
   }, [props.stacker])
 
+  getTracker = () => {
+    axios
+      .get(`tracker/`)
+      .then(response => {
+        setNoOfDeadlines(response.data.num_deadlines)
+        setClosestDeadline(new Date(response.data.min_date))
+      })
+      .catch(error => console.log(error))
+  }
+
   React.useEffect(() => setReload(true), [])
+  React.useEffect(getTracker, [props.navigation, props.stacker])
 
   return (
     <View style={styles.container}>
-      <View style={styles.tracker}><Tracker /></View>
+      <View style={styles.tracker}><Tracker count={noOfDeadlines} date={closestDeadline}/></View>
       <View style={[styles.colleges, {maxHeight: '40%'}]}><Colleges navigation={props.navigation} collegeNavigator={props.stacker} reload={reload}/></View>
 
       <View style={[styles.colleges, {flex: 1}]}><Recommended navigation={props.navigation} collegeNavigator={props.stacker}/></View>
