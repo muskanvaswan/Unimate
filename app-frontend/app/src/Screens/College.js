@@ -3,11 +3,25 @@ import { StyleSheet, View, ScrollView, Image } from 'react-native';
 import { Text, Button, useTheme, FAB } from 'react-native-paper'
 import axios from '../../shared/api'
 import DeadlineCreate from '../DeadlineCreate'
+import DeadlineList from '../DeadlineList'
 
 export default function App(props) {
   const { colors } = useTheme();
   const college = props.route.params.college
   const [ deadlineVisible, setDeadlineVisible ] = React.useState(false);
+  const [ deadlines, setDeadlines ] = React.useState([])
+
+  getDeadlines = () => {
+    axios
+      .get(`deadline/${college.id}/`)
+      .then(response => {
+        const data = response.data.deadline
+        setDeadlines(data)
+      })
+      .catch(error => console.log(error));
+  }
+
+  React.useEffect(getDeadlines, [deadlineVisible])
 
   addCollege = () => {
     axios
@@ -42,6 +56,7 @@ export default function App(props) {
     <View style={styles.container}>
     <ScrollView style={{padding: 20}}>
 
+      {props.route.params.deletable && <DeadlineList deadlines={deadlines} setDeadlines={setDeadlines} collegeId={college.id}/>}
       <Text style={styles.title}>{college.name}</Text>
       <View style={{display: 'flex', flexDirection: 'row'}}>
         <View style={styles.tile}>
@@ -99,9 +114,9 @@ export default function App(props) {
           </View>
         </View>
       </View>
-      <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
 
     </ScrollView>
+    <Image style={styles.gradient} source={require('../../assets/gradient.png')} />
 
     {!props.route.params.deletable ?
       <FAB
