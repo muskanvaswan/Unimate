@@ -13,8 +13,8 @@ export default function App(props) {
   const [ closestDeadline, setClosestDeadline ] = React.useState(new Date())
 
   React.useEffect(() => {
-    const reload = props.stacker.addListener('focus', forceUpdate)
-
+    const reload = props.stacker.addListener('focus', getTracker)
+    return reload
   }, [props.stacker])
 
   getTracker = () => {
