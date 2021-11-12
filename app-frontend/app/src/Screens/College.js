@@ -118,7 +118,7 @@ export default function App(props) {
     {deadlineVisible &&
       <>
         <View style={styles.backdrop} />
-        {props.route.params.deletable && <DeadlineCreate setVisible={setDeadlineVisible}/>}
+        {props.route.params.deletable && <DeadlineCreate setVisible={setDeadlineVisible} collegeId={college.id}/>}
       </>
     }
     {props.route.params.deletable &&

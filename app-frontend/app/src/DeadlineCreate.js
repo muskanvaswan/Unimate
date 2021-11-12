@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Button, IconButton, TextInput, useTheme, Text } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
-import DatePicker from 'react-native-date-picker'
+import DatePicker from 'react-native-date-picker';
+import axios from '../shared/api';
 
 const MyComponent = (props) => {
 
@@ -12,7 +13,19 @@ const MyComponent = (props) => {
   const [ date, setDate ] = React.useState(new Date())
 
   const createDeadline = () => {
-
+    if (title != '') {
+      const payload = {
+        date: date,
+        title: title
+       }
+      axios
+        .post(`deadline/${props.collegeId}/`, payload)
+        .then(response => {
+          console.log('done')
+        })
+        .catch(error => console.log(error));
+    }
+    console.log(date)
     props.setVisible(false);
   }
   return (
@@ -46,6 +59,7 @@ const MyComponent = (props) => {
         modal
         open={open}
         date={date}
+        minimumDate={new Date()}
         onConfirm={(date) => {
           setOpen(false)
           setDate(date)

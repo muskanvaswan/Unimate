@@ -79,7 +79,7 @@ class DeadlineView(APIView):
         college = College.objects.get(pk=college_id)
         user = request.user
 
-        if college in user.colleges:
+        if college in user.profile.colleges.all():
             data = request.data
             deadline = Deadline(date=data['date'], title=data['title'])
             deadline.save()
