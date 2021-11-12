@@ -1,13 +1,16 @@
 import React from 'react';
 import { StyleSheet, View, Image, ScrollView } from 'react-native';
 import { Text } from 'react-native-paper'
-import Recommended from '../Recommended'
+import DeadlineList from '../DeadlineList'
 import axios from '../../shared/api';
 
 function Deadlines({college, deadlines}) {
+  const [ data, setData ] = React.useState(deadlines)
+
   return (
-    <View>
-      <Text>{college.name}</Text>
+    <View style={{marginVertical: 10}}>
+      <Text style={{fontSize: 18, fontWeight: 'bold'}}>{college.name}</Text>
+      <DeadlineList deadlines={data} setDeadlines={setData} collegeId={college.id} />
     </View>
   )
 }
