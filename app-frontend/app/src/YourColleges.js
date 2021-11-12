@@ -67,11 +67,9 @@ const App = (props) => {
 
   React.useEffect(() =>{
     if (props.navigation) {
-      const reload = props.navigation.addListener('focus', () => {
-       getData();
-      });
+      const reload = props.navigation.addListener('focus', getData)
+      return reload;
     }
-
   }, [props.navigation])
 
   React.useEffect(() =>{
