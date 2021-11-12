@@ -38,6 +38,7 @@ class DeadlineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Deadline
         fields = '__all__'
+        ordering = 'date'
 
 class TrackerSerializer(serializers.ModelSerializer):
     deadline = DeadlineSerializer(read_only=True, many=True)
