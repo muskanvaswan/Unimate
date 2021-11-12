@@ -66,10 +66,6 @@ function App({ navigation }) {
         {() => <Dashboard stacker={navigation} />}
         </Drawer.Screen>
         <Drawer.Screen
-          name="Profile"
-          component={Profile}
-        />
-        <Drawer.Screen
           name="Recommended"
         >
         {() => <Recommended stacker={navigation} />}
@@ -84,6 +80,10 @@ function App({ navigation }) {
         >
         {() => <Deadlines stacker={navigation} />}
         </Drawer.Screen>
+        <Drawer.Screen
+        name="Profile"
+        component={Profile}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
 
