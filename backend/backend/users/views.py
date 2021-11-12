@@ -117,8 +117,29 @@ class DeadlineDelete(APIView):
 
 class UserTrackerList(APIView):
 
-
     def get(self, request):
         trackers = request.user.tracker.all()
         trackers = TrackerSerializer(trackers, many=True)
         return Response(data=trackers.data)
+
+class UserTrackerStats(APIView):
+
+    def get(self, request):
+        trackers = request.user.tracker.all()
+        trackers = TrackerSerializer(trackers, many=True).data
+
+        num_deadlines = 0
+
+        min_date = trackers[0]["deadline"][0]["date"]
+        for tracker in trackers:
+            num_deadlines += len(tracker["deadline"])
+            recent_date = tracker["deadline"][0]["date"]
+            if min_date > recent_date:
+                min_date = recent_date
+
+        data = {
+            "num_deadlines": num_deadlines,
+            "min_date": min_date
+        }
+
+        return Response(data=data)
