@@ -145,7 +145,7 @@ export default function RecipeReviewCard() {
         <hr/>
         <Button size="small" sx={{ color: 'black'}}>Document verification results</Button>
           <hr/>
-        <Button size="small" sx={{ color: 'black'}}>ETH Zurich</Button>
+        <Button size="small" sx={{ color: 'black'}}>Notes</Button>
           <hr/>
         </CardContent>
       </Collapse>
