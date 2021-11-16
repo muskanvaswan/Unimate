@@ -110,7 +110,7 @@ export default function RecipeReviewCard() {
             Uni
           </Avatar>
         }
-
+          title="REMINDERS AND NOTIFICATIONS"
       />
       <CardMedia
         component="img"
@@ -137,13 +137,13 @@ export default function RecipeReviewCard() {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
         <hr/>
-        <Button size="small" sx={{ color: 'black'}}>Harvard University</Button>
+        <Button size="small" sx={{ color: 'black'}}>Yale University Application</Button>
         <hr/>
-        <Button size="small" sx={{ color: 'black'}}>Massachusetts institute of technology</Button>
+        <Button size="small" sx={{ color: 'black'}}>Revised application dates</Button>
         <hr/>
-        <Button size="small" sx={{ color: 'black'}}>Oxford University</Button>
-          <hr/>
-        <Button size="small" sx={{ color: 'black'}}>TU Munich</Button>
+        <Button size="small" sx={{ color: 'black'}}>CIT Enrollment</Button>
+        <hr/>
+        <Button size="small" sx={{ color: 'black'}}>Document verification results</Button>
           <hr/>
         <Button size="small" sx={{ color: 'black'}}>ETH Zurich</Button>
           <hr/>
