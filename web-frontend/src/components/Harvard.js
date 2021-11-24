@@ -4,16 +4,10 @@ import Typography from "@mui/material/Typography"
 import Container from '@mui/material/Container';
 import Menubar from './Menubar.js';
 import Cards from './Cards.js'
-import Harvard from './Harvard.js'
+import {Link, BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-
-export default function Component() {
+export default function Harvard() {
   return (
-
-    <Container>
-    <Menubar/>
-    <Harvard/>
-    </Container>
-
+    <Typography variant="h1" color="black">testing component </Typography>
   );
 }
