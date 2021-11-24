@@ -23,7 +23,7 @@ class CreateUserAPIView(CreateAPIView):
         headers = self.get_success_headers(serializer.data)
         # We create a token than will be used for future auth
         token = Token.objects.create(user=serializer.instance)
-        profile = Profile.objects.create(user=serializer.instance)
+        profile = Profile.objects.create(user=serializer.instance, sat_score=request.data['sat_score'])
         token_data = {"token": token.key}
         return Response(
             {**serializer.data, **token_data},
@@ -50,7 +50,6 @@ class ProfileView(APIView):
 
     def get(self, request):
         data = ProfileSerializer(request.user.profile)
-        print(request.user)
         return Response(data.data)
 
 class AddCollegeView(APIView):
@@ -129,13 +128,19 @@ class UserTrackerStats(APIView):
         trackers = TrackerSerializer(trackers, many=True).data
 
         num_deadlines = 0
+        if len(trackers) > 0:
+            min_date = trackers[0]["deadline"]
+            if len(min_date) > 0:
+                min_date = min_date[0]["date"]
+                for tracker in trackers:
+                    num_deadlines += len(tracker["deadline"])
+                    recent_date = tracker["deadline"][0]["date"]
+                    if min_date > recent_date:
+                        min_date = recent_date
+            else:
+                min_date = None
 
-        min_date = trackers[0]["deadline"][0]["date"]
-        for tracker in trackers:
-            num_deadlines += len(tracker["deadline"])
-            recent_date = tracker["deadline"][0]["date"]
-            if min_date > recent_date:
-                min_date = recent_date
+
 
         data = {
             "num_deadlines": num_deadlines,

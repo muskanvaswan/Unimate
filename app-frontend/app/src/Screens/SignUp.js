@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Text, Button, TextInput, Divider, useTheme } from 'react-native-paper'
-import axios from 'axios';
+import axios from '../../shared/api';
 
 export default function App({ navigation }) {
   const { colors } = useTheme();
@@ -9,13 +9,15 @@ export default function App({ navigation }) {
   const [ lastName, setLastName ] = React.useState('');
   const [ username, setUsername ] = React.useState('');
   const [ password, setPassword ] = React.useState('');
+  const [ satScore, setSatScore ] = React.useState('');
 
   const register = () => {
     const payload = {
       username: username,
       password: password,
       first_name: firstName,
-      last_name: lastName
+      last_name: lastName,
+      sat_score: parseInt(satScore) / 150
      }
 
     axios
@@ -65,6 +67,15 @@ export default function App({ navigation }) {
         onChangeText={password => setPassword(password)}
         underlineColor={colors.highlight}
         autoCapitalize="none"
+      />
+      <TextInput
+        label="SAT Score"
+        value={satScore}
+        style={styles.input}
+        onChangeText={satScore => setSatScore(satScore)}
+        underlineColor={colors.highlight}
+        autoCapitalize="none"
+        keyboardType={'numeric'}
       />
       <Button
         mode="contained"
