@@ -16,6 +16,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Cards from './Cards.js'
 
+
 const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -109,7 +110,7 @@ export default function PersistentDrawerLeft() {
       >
 
         <DrawerHeader style={{backgroundColor: "#B86FC3", color: "#1B1B1B"}}>
-          <Typography> Menubar </Typography>
+
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
