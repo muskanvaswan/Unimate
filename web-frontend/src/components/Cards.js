@@ -79,7 +79,7 @@ export default function RecipeReviewCard() {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
         <hr/>
-        <Button size="small" sx={{ color: 'black'}}>Harvard University</Button>
+        <Button size="small" sx={{ color: 'black'}} href={`colleges/${1}/`}>Harvard University</Button>
         <hr/>
         <Button size="small" sx={{ color: 'black'}}>Massachusetts institute of technology</Button>
         <hr/>

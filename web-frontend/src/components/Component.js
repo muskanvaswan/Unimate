@@ -12,7 +12,6 @@ export default function Component() {
 
     <Container>
     <Menubar/>
-    <Harvard/>
     </Container>
 
   );
