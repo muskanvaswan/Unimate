@@ -42,7 +42,7 @@ function HomeScreen({ navigation }) {
 const Drawer = createDrawerNavigator();
 
 function App({ navigation }) {
-
+  const stacker = navigation
   return (
 
     <NavigationContainer independent={true} theme={theme}>
@@ -57,7 +57,7 @@ function App({ navigation }) {
           },
           header: ({ navigation, route, options }) => {
           //const title = getHeaderTitle(options, route.name);
-            return <Topbar navigation={navigation}/>;
+            return <Topbar navigation={navigation} stacker={stacker}/>;
           }
         }}>
         <Drawer.Screen
