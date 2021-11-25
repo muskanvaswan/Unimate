@@ -15,6 +15,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Cards from './Cards.js'
+import Recommends from './Recommends.js';
 
 
 const drawerWidth = 240;
@@ -79,8 +80,8 @@ export default function PersistentDrawerLeft() {
   return (
     <Box sx={{ display: 'flex' }} >
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar style={{backgroundColor:'primary'}}>
+      <AppBar position="fixed" open={open} color="transparent">
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -88,9 +89,9 @@ export default function PersistentDrawerLeft() {
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
-            <MenuIcon style={{color:'black'}}/>
+            <MenuIcon style={{color:'white'}}/>
           </IconButton >
-          <Typography variant="h3" color="black"> <b> UNIMATE </b></Typography>
+          <Typography variant="h3" color="white"> <b> Unimate </b></Typography>
         </Toolbar>
       </AppBar>
 
@@ -101,22 +102,25 @@ export default function PersistentDrawerLeft() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            bgcolor: 'black'
           },
+
         }}
 
         variant="persistent"
         anchor="left"
         open={open}
+        color="transparent"
       >
 
-        <DrawerHeader style={{backgroundColor: "#B86FC3", color: "#1B1B1B"}}>
+        <DrawerHeader style={{backgroundColor: "#B86FC304", color: "#fff"}}>
 
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          <IconButton onClick={handleDrawerClose} sx={{color: 'white'}}>
+            {theme.direction === 'ltr' ? <ChevronLeftIcon color="white"/> : <ChevronRightIcon color="white"/>}
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List style={{backgroundColor: "#E7B5FF", color: "#1B1B1B"}}>
+        <List style={{backgroundColor: "#00000000", color: "#fff"}}>
           {['My Account', 'Dashboard', 'Logout'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemText primary={text} />
@@ -124,29 +128,8 @@ export default function PersistentDrawerLeft() {
           ))}
         </List>
         <Divider />
-        <List  style={{backgroundColor: "#E7B5FF", color: "#1B1B1B"}}>
+        <List  style={{backgroundColor: "#00000000", color: "#fff"}}>
           {['About Us', 'Contact Us', 'Feedback'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <List style={{backgroundColor: "#E7B5FF"}}>
-          {['', '', ''].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <List style={{backgroundColor: "#E7B5FF"}}>
-          {['', '', ''].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <List style={{backgroundColor: "#E7B5FF"}}>
-          {['', '', ''].map((text, index) => (
             <ListItem button key={text}>
               <ListItemText primary={text} />
             </ListItem>
@@ -156,7 +139,8 @@ export default function PersistentDrawerLeft() {
 
       <Main open={open} >
         <DrawerHeader />
-<Cards/>
+        <Cards/>
+        <Recommends />
       </Main>
     </Box>
   );

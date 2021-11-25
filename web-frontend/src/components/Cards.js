@@ -42,74 +42,73 @@ export default function RecipeReviewCard() {
   return (
     <Grid container spacing={3}>
 
+      <Grid item xs ={4}>
+        <Card sx={{bgcolor:'#B86FC340' }}>
+          <CardHeader
+            avatar={
+              <Avatar sx={{ bgcolor:'#E7B5FF' }} aria-label="your colleges">
+                Uni
+              </Avatar>
+            }
+            titleTypographyProps={{color: 'white'}}
+            title="YOUR SELECTED UNIVERSITIES"
+            subheader=""
+          />
+          <CardMedia
+            component="img"
+            height="194"
+            image="https://www.acenet.edu/PublishingImages/Interior-Page-Heroes/2014-Loyola_Lake_Shore_Campus03.JPG?RenditionID=10"
+            alt="Image unable to load"
+          />
+          <CardContent>
+            <Typography variant="body2">
+
+            </Typography>
+          </CardContent>
+          <CardActions disableSpacing>
+            <ExpandMore
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </ExpandMore>
+          </CardActions>
+
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+            <hr/>
+            <Button size="small" sx={{ color: 'white'}} href={`colleges/${1}/`}>Harvard University</Button>
+            <hr/>
+            <Button size="small" sx={{ color: 'white'}}>Massachusetts institute of technology</Button>
+            <hr/>
+            <Button size="small" sx={{ color: 'white'}}>Oxford University</Button>
+              <hr/>
+            <Button size="small" sx={{ color: 'white'}}>TU Munich</Button>
+              <hr/>
+            <Button size="small" sx={{ color: 'white'}}>ETH Zurich</Button>
+              <hr/>
+            </CardContent>
+          </Collapse>
+        </Card>
+      </Grid>
+
+
     <Grid item xs ={4}>
-    <Card sx={{bgcolor:'#B86FC3' }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor:'#E7B5FF' }} aria-label="your colleges">
-            Uni
-          </Avatar>
-        }
-
-        title="YOUR SELECTED UNIVERSITIES"
-        subheader=""
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image="https://www.acenet.edu/PublishingImages/Interior-Page-Heroes/2014-Loyola_Lake_Shore_Campus03.JPG?RenditionID=10"
-        alt="Image unable to load"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-        <hr/>
-        <Button size="small" sx={{ color: 'black'}} href={`colleges/${1}/`}>Harvard University</Button>
-        <hr/>
-        <Button size="small" sx={{ color: 'black'}}>Massachusetts institute of technology</Button>
-        <hr/>
-        <Button size="small" sx={{ color: 'black'}}>Oxford University</Button>
-          <hr/>
-        <Button size="small" sx={{ color: 'black'}}>TU Munich</Button>
-          <hr/>
-        <Button size="small" sx={{ color: 'black'}}>ETH Zurich</Button>
-          <hr/>
-        </CardContent>
-      </Collapse>
-    </Card>
-    </Grid>
-
-
-    <Grid item xs ={4}>
-    <Card>
      <App_tracker/>
-     </Card>
     </Grid>
 
 
     <Grid item xs ={4}>
-    <Card sx={{bgcolor:'#B86FC3' }}>
+    <Card sx={{bgcolor:'#B86FC340' }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor:'#E7B5FF' }} aria-label="your colleges">
             Uni
           </Avatar>
         }
+        titleTypographyProps={{color: 'white'}}
           title="REMINDERS AND NOTIFICATIONS"
       />
       <CardMedia
@@ -137,25 +136,20 @@ export default function RecipeReviewCard() {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
         <hr/>
-        <Button size="small" sx={{ color: 'black'}}>Yale University Application</Button>
+        <Button size="small" sx={{ color: 'white'}}>Yale University Application</Button>
         <hr/>
-        <Button size="small" sx={{ color: 'black'}}>Revised application dates</Button>
+        <Button size="small" sx={{ color: 'white'}}>Revised application dates</Button>
         <hr/>
-        <Button size="small" sx={{ color: 'black'}}>CIT Enrollment</Button>
+        <Button size="small" sx={{ color: 'white'}}>CIT Enrollment</Button>
         <hr/>
-        <Button size="small" sx={{ color: 'black'}}>Document verification results</Button>
+        <Button size="small" sx={{ color: 'white'}}>Document verification results</Button>
           <hr/>
-        <Button size="small" sx={{ color: 'black'}}>Notes</Button>
+        <Button size="small" sx={{ color: 'white'}}>Notes</Button>
           <hr/>
         </CardContent>
       </Collapse>
     </Card>
     </Grid>
-
-
-
-
- <Recommends/>
 
 </Grid>
   );
