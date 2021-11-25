@@ -80,7 +80,7 @@ export default function PersistentDrawerLeft() {
   return (
     <Box sx={{ display: 'flex' }} >
       <CssBaseline />
-      <AppBar position="fixed" open={open} color="transparent">
+      <AppBar position="fixed" open={open} sx={{bgcolor: '#1b1b1b'}}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -91,7 +91,7 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon style={{color:'white'}}/>
           </IconButton >
-          <Typography variant="h3" color="white"> <b> Unimate </b></Typography>
+          <Typography variant="h4" color="white"> <b> Unimate </b></Typography>
         </Toolbar>
       </AppBar>
 
