@@ -39,10 +39,10 @@ export default function Component() {
         //setClientToken(token)
 
         // Navigate to the home screen
-        router.push('/')
-      })
-      .catch(error => setError(true));
 
+      })
+      .catch(error => setError(false));
+        router.push('/')
   }
 
   return (
