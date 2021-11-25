@@ -48,6 +48,7 @@ export default function Component() {
   return (
 
     <Container sx={{height: '100vh', width: '50%', display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+      <Typography variant='h1' align='center' color='#B86FC3'> <b> UNIMATE </b></Typography>
       <TextField
         variant="filled"
         InputProps={{
