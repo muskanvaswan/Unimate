@@ -1,5 +1,6 @@
 import React from 'react'
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardHeader from '@mui/material/CardHeader';
@@ -15,20 +16,27 @@ export default function Harvard() {
   return (
 <Container sx={{ minWidth : '90%', maxWidth: '90%',  paddingTop: '7%' ,  minHeight : '25%', maxHeight: '25%'}}>
 
-<Card sx={{color: 'primary', bg: 'lightgray'}}>
-  <CardActionArea>
-    <CardMedia
-      component="img"
-      height="140"
-      image="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Harvard_University_logo.svg/2560px-Harvard_University_logo.svg.png"
-      alt="Harvard logo"
-    />
-  </CardActionArea>
-  <CardContent >
-    <Typography gutterBottom variant="h5" component="div">
-      Cambridge, Boston, US
-    </Typography>
-    <Typography variant="h4" color="black">
+<Box sx={{color: 'primary'}}>
+  <Box sx={{display: 'flex', alignItems: 'center'}}>
+      <Button sx={{width: '20%'}}>
+        <img
+          height="200"
+          src="http://assets.stickpng.com/images/5842f68fa6515b1e0ad75b22.png"
+          alt="Harvard logo"
+        />
+      </Button>
+      <Box>
+        <Typography variant="h1" component="div" color="white">
+          Harvard University
+        </Typography>
+        <Typography gutterBottom variant="h4" color="white">
+          Cambridge, Boston, US
+        </Typography>
+      </Box>
+    </Box>
+  <Box sx={{color: 'white', m: 3}}>
+
+    <Typography variant="body1" color="white">
     Harvard University, oldest institution of higher learning in the United States (founded 1636)
     and one of the nation’s most prestigious. It is one of the Ivy League schools.
     The main university campus lies along the Charles River in Cambridge, Massachusetts,
@@ -39,8 +47,8 @@ export default function Harvard() {
     Harvard was named for a Puritan minister, John Harvard,
     who left the college his books and half of his estate.
     </Typography>
-  </CardContent>
-</Card>
+  </Box>
+</Box>
 
 
 
