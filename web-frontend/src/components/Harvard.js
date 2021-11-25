@@ -23,23 +23,23 @@ export default function Harvard() {
       image="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Harvard_University_logo.svg/2560px-Harvard_University_logo.svg.png"
       alt="Harvard logo"
     />
-    <CardContent >
-      <Typography gutterBottom variant="h5" component="div">
-        Cambridge, Boston, US
-      </Typography>
-      <Typography variant="h4" color="black">
-      Harvard University, oldest institution of higher learning in the United States (founded 1636)
-      and one of the nation’s most prestigious. It is one of the Ivy League schools.
-      The main university campus lies along the Charles River in Cambridge, Massachusetts,
-      a few miles west of downtown Boston. Harvard’s total enrollment is about 23,000.
-      Harvard’s history began when a college was established at New Towne,
-      which was later renamed Cambridge for the English alma mater of some of the leading colonists.
-      Classes began in the summer of 1638 with one master in a single frame house and a “college yard.”
-      Harvard was named for a Puritan minister, John Harvard,
-      who left the college his books and half of his estate.
-      </Typography>
-    </CardContent>
   </CardActionArea>
+  <CardContent >
+    <Typography gutterBottom variant="h5" component="div">
+      Cambridge, Boston, US
+    </Typography>
+    <Typography variant="h4" color="black">
+    Harvard University, oldest institution of higher learning in the United States (founded 1636)
+    and one of the nation’s most prestigious. It is one of the Ivy League schools.
+    The main university campus lies along the Charles River in Cambridge, Massachusetts,
+    a few miles west of downtown Boston. Harvard’s total enrollment is about 23,000.
+    Harvard’s history began when a college was established at New Towne,
+    which was later renamed Cambridge for the English alma mater of some of the leading colonists.
+    Classes began in the summer of 1638 with one master in a single frame house and a “college yard.”
+    Harvard was named for a Puritan minister, John Harvard,
+    who left the college his books and half of his estate.
+    </Typography>
+  </CardContent>
 </Card>
 
 
